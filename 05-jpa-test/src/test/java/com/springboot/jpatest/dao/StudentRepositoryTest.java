@@ -1,31 +1,25 @@
 package com.springboot.jpatest.dao;
 
 import com.springboot.jpatest.entity.Student;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 import java.util.Optional;
 
 /**
  * 描述：测试
- *
  * @author ming
  * @version 1.0
  * @date 2020-01-05 13:58
  * @see
  */
-@RunWith (SpringRunner.class)
 @SpringBootTest
 public class StudentRepositoryTest {
 
     @Autowired
     StudentRepository repository;
-
 
     /**
      * 基于JPA查询数据库数据
@@ -34,6 +28,7 @@ public class StudentRepositoryTest {
     public void select() {
         List<Student> list = repository.findAll ();
         list.forEach (System.out::println);
+
     }
 
     /**
