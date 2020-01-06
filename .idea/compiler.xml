@@ -6,18 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mybatisxml" />
+        <module name="02-mybatisxml" />
         <module name="03-mybatis-@" />
         <module name="04-mybatis-plus" />
-        <module name="02-mybatisxml" />
-        <module name="mybatisplus" />
-        <module name="01-spring-boot-MVC" />
+        <module name="demo01" />
         <module name="mybatis03" />
-        <module name="05-jpa-test" />
+        <module name="mybatisplus" />
+        <module name="mybatisxml" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="01-spring-boot-MVC" target="1.8" />
+      <module name="01-spring-boot-MVC" target="1.5" />
       <module name="02-demo" target="1.8" />
       <module name="02-mybatisxml" target="1.8" />
       <module name="03-demo" target="1.8" />
