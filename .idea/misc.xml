@@ -14,6 +14,7 @@
         <option value="$PROJECT_DIR$/04-mybatis-plus/pom.xml" />
         <option value="$PROJECT_DIR$/05-jpatest/pom.xml" />
         <option value="$PROJECT_DIR$/01-spring-boot-MVC/pom.xml" />
+        <option value="$PROJECT_DIR$/05-jpa-test/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -36,5 +37,5 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_10" project-jdk-name="10" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_10" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

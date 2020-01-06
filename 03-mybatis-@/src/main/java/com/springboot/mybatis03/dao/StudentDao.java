@@ -199,7 +199,7 @@ public interface StudentDao {
             //以下grade_name可以不用映射
             //@Result(column = "grade_name",property = "gradeName"),
             @Result(column = "id",property = "students",
-                many = @Many(select = "getStudentByGradeId",fetchType = FetchType.LAZY)
+                many = @Many(select = "getStudentByGradeId",fetchType = FetchType.EAGER)
             )
     })
     List<GradeDTO> getRalation02();
@@ -222,7 +222,7 @@ public interface StudentDao {
     @Results({
             @Result(id = true,column = "id",property = "id"),
             @Result(column = "id",property = "studentsList",
-                many = @Many(select = "getStudentListByCourseId" ,fetchType = FetchType.LAZY)
+                many = @Many(select = "getStudentListByCourseId" ,fetchType = FetchType.EAGER)
             )
     })
     List<CourseDTO> getCourseAndStudents(@Param ("name") String name);
@@ -267,7 +267,7 @@ public interface StudentDao {
             ),
             //学生和课程，1：n的映射
             @Result(column = "id" ,property = "courses",
-                    many = @Many(select = "getCourseByStudentId",fetchType = FetchType.LAZY)
+                    many = @Many(select = "getCourseByStudentId",fetchType = FetchType.EAGER)
             )
     })
 
@@ -275,7 +275,7 @@ public interface StudentDao {
 
     /**
      * 根据学生查询课程
-     * @param name
+     * @param id
      * @return
      */
     @Select ("select * from course a,course_student_mid b "
@@ -301,7 +301,7 @@ public interface StudentDao {
 
     /**
      * 插入单条数据
-     * @param students
+     * @param student
      * @return
      */
     @InsertProvider (type = SQLProvider.class, method = "addOfSQLProvider")

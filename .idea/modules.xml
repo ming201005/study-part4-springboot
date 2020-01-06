@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/01-spring-boot-MVC/01-spring-boot-MVC.iml" filepath="$PROJECT_DIR$/01-spring-boot-MVC/01-spring-boot-MVC.iml" />
       <module fileurl="file://$PROJECT_DIR$/02-mybatisxml/02-mybatisxml.iml" filepath="$PROJECT_DIR$/02-mybatisxml/02-mybatisxml.iml" />
       <module fileurl="file://$PROJECT_DIR$/03-mybatis-@/03-mybatis-@.iml" filepath="$PROJECT_DIR$/03-mybatis-@/03-mybatis-@.iml" />
       <module fileurl="file://$PROJECT_DIR$/04-mybatis-plus/04-mybatis-plus.iml" filepath="$PROJECT_DIR$/04-mybatis-plus/04-mybatis-plus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/05-jpa-test/05-jpa-test.iml" filepath="$PROJECT_DIR$/05-jpa-test/05-jpa-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/01-spring-boot-MVC/demo01.iml" filepath="$PROJECT_DIR$/01-spring-boot-MVC/demo01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/05-jpa-test/jpatest.iml" filepath="$PROJECT_DIR$/05-jpa-test/jpatest.iml" />
       <module fileurl="file://$PROJECT_DIR$/03-mybatis-@/mybatis03.iml" filepath="$PROJECT_DIR$/03-mybatis-@/mybatis03.iml" />
       <module fileurl="file://$PROJECT_DIR$/04-mybatis-plus/mybatisplus.iml" filepath="$PROJECT_DIR$/04-mybatis-plus/mybatisplus.iml" />
       <module fileurl="file://$PROJECT_DIR$/02-mybatisxml/mybatisxml.iml" filepath="$PROJECT_DIR$/02-mybatisxml/mybatisxml.iml" />

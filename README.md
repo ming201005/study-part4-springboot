@@ -16,8 +16,8 @@ study-part4-springboot是《全栈工程师修炼之路》的Part4部分。本�
 
 # 3 数据库相关
 
-1. MySQL5 的链接：jdbc:mysql://localhost:3306/02-mybatisxml?allowMultiQueries=true
-2. MySQL8 的链接：jdbc:mysql://localhost:3306/02-mybatisxml?serverTimezone=UTC&allowMultiQueries=true
+1. MySQL5 的链接：jdbc:mysql://localhost:3306/db?allowMultiQueries=true
+2. MySQL8 的链接：jdbc:mysql://localhost:3306/db?serverTimezone=UTC&allowMultiQueries=true
 # 4 基本步骤：
 1. 请先创建数据库（在db文件夹下，数据库名称和项目名称一致）；
 2. 据库不对应的请自行调整；

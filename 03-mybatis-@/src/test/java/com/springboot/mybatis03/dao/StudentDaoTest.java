@@ -174,7 +174,7 @@ class StudentDaoTest {
     //普通查询
     @Test
     void getStudentsAndCourseOfProvider() {
-        List<StudentDTO> list = studentDao.getStudentsAndCourseOfProvider (1);
+        List<StudentDTO> list = studentDao.getStudentsAndCourseOfProvider (3);
         for (StudentDTO student: list) {
             System.out.println (student);
         }
