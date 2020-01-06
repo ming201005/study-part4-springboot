@@ -7,6 +7,9 @@
       <module fileurl="file://$PROJECT_DIR$/03-mybatis-@/03-mybatis-@.iml" filepath="$PROJECT_DIR$/03-mybatis-@/03-mybatis-@.iml" />
       <module fileurl="file://$PROJECT_DIR$/04-mybatis-plus/04-mybatis-plus.iml" filepath="$PROJECT_DIR$/04-mybatis-plus/04-mybatis-plus.iml" />
       <module fileurl="file://$PROJECT_DIR$/05-jpa-test/05-jpa-test.iml" filepath="$PROJECT_DIR$/05-jpa-test/05-jpa-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03-mybatis-@/mybatis03.iml" filepath="$PROJECT_DIR$/03-mybatis-@/mybatis03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04-mybatis-plus/mybatisplus.iml" filepath="$PROJECT_DIR$/04-mybatis-plus/mybatisplus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02-mybatisxml/mybatisxml.iml" filepath="$PROJECT_DIR$/02-mybatisxml/mybatisxml.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/springboot.iml" filepath="$PROJECT_DIR$/.idea/springboot.iml" />
     </modules>
   </component>

@@ -10,22 +10,22 @@
         <!--配置学生子集映射，注意映射的是StudentCourseDTO-->
         <collection property="studentList" ofType="StudentCourseDTO">
             <id column="student_id" property="id" jdbcType="INTEGER"/>
-            <result column="student_name" property="name" jdbcType="VARCHAR"/>
+            <result column="student_name" property="studentName" jdbcType="VARCHAR"/>
             <result column="age" property="age" jdbcType="INTEGER"/>
             <result column="sex" property="sex" jdbcType="VARCHAR"/>
             <result column="addr" property="addr" jdbcType="VARCHAR"/>
-            <result column="grade_id" property="gradeEnum" jdbcType="INTEGER"/>
+            <result column="grade_id" property="gradeId" jdbcType="INTEGER"/>
         </collection>
     </resultMap>
 
     <!--课程和学生的关系是多对多，以学生为维度-->
     <resultMap id="StudentCourseMap" type="StudentCourseDTO">
         <id column="student_id" property="id" jdbcType="INTEGER"/>
-        <result column="student_name" property="name" jdbcType="VARCHAR"/>
+        <result column="student_name" property="studentName" jdbcType="VARCHAR"/>
         <result column="age" property="age" jdbcType="INTEGER"/>
         <result column="sex" property="sex" jdbcType="VARCHAR"/>
         <result column="addr" property="addr" jdbcType="VARCHAR"/>
-        <result column="grade_id" property="gradeEnum" jdbcType="INTEGER"/>
+        <result column="grade_id" property="gradeId" jdbcType="INTEGER"/>
         <!--配置课程子集映射，注意映射的是CourseStudentDTO-->
         <collection property="courseList" ofType="CourseStudentDTO">
             <id column="course_id" property="id" javaType="INTEGER"/>

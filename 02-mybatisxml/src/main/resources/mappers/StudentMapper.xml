@@ -6,11 +6,11 @@
     <!--配置返回数据类型-->
     <resultMap type="Student" id="listStudent">
         <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="student_name" property="name" jdbcType="VARCHAR"/>
+        <result column="student_name" property="studentName" jdbcType="VARCHAR"/>
         <result column="age" property="age" jdbcType="INTEGER"/>
         <result column="sex" property="sex" jdbcType="VARCHAR"/>
         <result column="addr" property="addr" jdbcType="VARCHAR"/>
-        <result column="grade_id" property="gradeEnum" jdbcType="INTEGER"/>
+        <result column="grade_id" property="gradeId" jdbcType="INTEGER"/>
     </resultMap>
     <!--查询全部数据-->
     <select id="allStudents" resultMap="listStudent">
@@ -20,17 +20,17 @@
     <!--新增数据-->
     <insert id="add" parameterType="Student">
         insert  into student(student_name, age, sex, addr, grade_id)
-        values (#{name},#{age},#{sex},#{addr},#{gradeEnum})
+        values (#{studentName},#{age},#{sex},#{addr},#{gradeId})
     </insert>
 
     <!--根据id修改数据-->
     <update id="edit" parameterType="Student">
         update student set
-            student_name = #{name},
+            student_name = #{studentName},
             age = #{age},
             sex = #{sex},
             addr = #{addr},
-            grade_id = #{gradeEnum}
+            grade_id = #{gradeId}
         where  id=#{id}
     </update>
 
@@ -46,14 +46,14 @@
     <insert id="addReturnId" parameterType="Student"
             useGeneratedKeys="true" keyProperty="id">
         insert  into student(student_name, age, sex, addr, grade_id)
-        values (#{name},#{age},#{sex},#{addr},#{gradeEnum})
+        values (#{studentName},#{age},#{sex},#{addr},#{gradeId})
     </insert>
 
     <!--插入返回ID 用<selectKey>也达到效果
     获取ID方式同上面的方式一样-->
     <insert id="addReturnId02" parameterType="Student">
         insert into student(student_name, age, sex, addr, grade_id)
-        values (#{name},#{age},#{sex},#{addr},#{gradeEnum})
+        values (#{studentName},#{age},#{sex},#{addr},#{gradeId})
         <!-- 指定结果类型resultType，keyProperty是属性，
             自动返回到属性id中，order是次序，after是指获取id是在于插入后 -->
         <selectKey resultType="int" keyProperty="id" order="AFTER">
@@ -65,12 +65,12 @@
     <update id="editFields" parameterType="Student">
         update student
         <set>
-            <if test="name!=null">student_name = #{name},</if>
+            <if test="studentName!=null">student_name = #{studentName},</if>
             <if test="age !=null">age = #{age},</if>
             <!--注意char的默认值是'\u0000'-->
             <if test="sex !='\u0000'">sex = #{sex},</if>
             <if test="addr !=null">addr = #{addr},</if>
-            <if test="gradeEnum !=null">grade_id = #{gradeEnum}</if>
+            <if test="gradeId !=null">grade_id = #{gradeId}</if>
         </set>
         where id=#{id}
     </update>
@@ -80,12 +80,12 @@
        select id, student_name as name, age, sex, addr
        from student
        <where>
-        <if test="name !=null and name !=''">
+        <if test="studentName !=null and studentName !=''">
             <!--like 拼接方案1： student_name like "%"#{name}"%" -->
             <!--like 拼接方案2： student_name like '%${name}%'  -->
             <!--like 拼接方案3： student_name like CONCAT('%','${name}','%')  -->
             <!--请注意以上3种方案中的 #、 $、单引号、双引号的使用-->
-            student_name like '%${name}%'
+            student_name like '%${studentName}%'
         </if>
         <!--判断条件是：age02大于age01,age01大于0-->
         <if test="age02>age01 and age01>=0">
@@ -128,7 +128,7 @@
         insert  into student(student_name, age, sex, addr, grade_id)
         values
         <foreach collection="students" item="item" separator=",">
-            (#{item.name},#{item.age},#{item.sex},#{item.addr},#{item.gradeEnum})
+            (#{item.studentName},#{item.age},#{item.sex},#{item.addr},#{item.gradeId})
         </foreach>
     </insert>
 
@@ -148,17 +148,14 @@
         <foreach collection="students" item="item" separator=";">
             update student
             <set>
-                <if test="item.name!=null">student_name=#{item.name},</if>
+                <if test="item.studentName!=null">student_name=#{item.studentName},</if>
                 <if test="item.age !=null">age=#{item.age},</if>
                 <!--注意char的默认值是'\u0000'-->
                 <if test="item.sex !='\u0000'">sex=#{item.sex},</if>
                 <if test="item.addr !=null">addr= #{item.addr},</if>
-                <if test="item.gradeEnum !=null">grade_id=#{item.gradeEnum}</if>
+                <if test="item.gradeEnum !=null">grade_id=#{item.gradeId}</if>
             </set>
             where id = #{item.id}
         </foreach>
     </update>
-
-
-
 </mapper>

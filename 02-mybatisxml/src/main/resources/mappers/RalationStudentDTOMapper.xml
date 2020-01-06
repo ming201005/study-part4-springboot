@@ -7,7 +7,7 @@
     <!--配置返回数据类型-->
     <resultMap id="studentMap" type="StudentDTO">
         <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="student_name" property="name" jdbcType="VARCHAR"/>
+        <result column="student_name" property="studentName" jdbcType="VARCHAR"/>
         <result column="age" property="age" jdbcType="INTEGER"/>
         <result column="sex" property="sex" jdbcType="VARCHAR"/>
         <result column="addr" property="addr" jdbcType="VARCHAR"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="03-mybatis-@">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.14">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.17">
     <root id="1">
       <ServerVersion>5.7.25</ServerVersion>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -12,7 +12,6 @@
     </schema>
     <schema id="3" parent="1" name="03-mybatis-@">
       <Current>1</Current>
-      <Visible>1</Visible>
       <Collation>utf8_bin</Collation>
     </schema>
     <schema id="4" parent="1" name="04-mybatis-plus">
@@ -978,169 +977,5 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="251" parent="3" name="course"/>
-    <table id="252" parent="3" name="course_student_mid"/>
-    <table id="253" parent="3" name="grade">
-      <Comment>年级信息表</Comment>
-    </table>
-    <table id="254" parent="3" name="student">
-      <Comment>学生信息表</Comment>
-    </table>
-    <column id="255" parent="251" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="256" parent="251" name="course_name">
-      <Position>2</Position>
-      <DataType>varchar(45)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="257" parent="251" name="sort">
-      <Position>3</Position>
-      <DataType>int(11)|0s</DataType>
-      <DefaultExpression>0</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="258" parent="251" name="id_UNIQUE">
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-      <Type>btree</Type>
-    </index>
-    <key id="259" parent="251" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <key id="260" parent="251" name="id_UNIQUE">
-      <ColNames>id</ColNames>
-      <UnderlyingIndexName>id_UNIQUE</UnderlyingIndexName>
-    </key>
-    <column id="261" parent="252" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="262" parent="252" name="course_id">
-      <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="263" parent="252" name="student_id">
-      <Position>3</Position>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="264" parent="252" name="id_UNIQUE">
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-      <Type>btree</Type>
-    </index>
-    <index id="265" parent="252" name="course_id_idx">
-      <ColNames>course_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="266" parent="252" name="student_id_idx">
-      <ColNames>student_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="267" parent="252" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <key id="268" parent="252" name="id_UNIQUE">
-      <ColNames>id</ColNames>
-      <UnderlyingIndexName>id_UNIQUE</UnderlyingIndexName>
-    </key>
-    <foreign-key id="269" parent="252" name="course_id">
-      <ColNames>course_id</ColNames>
-      <RefSchemaName>03-mybatis-@</RefSchemaName>
-      <RefTableName>course</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="270" parent="252" name="student_id">
-      <ColNames>student_id</ColNames>
-      <RefSchemaName>03-mybatis-@</RefSchemaName>
-      <RefTableName>student</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <column id="271" parent="253" name="id">
-      <Position>1</Position>
-      <Comment>主键</Comment>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="272" parent="253" name="grade_name">
-      <Position>2</Position>
-      <Comment>年级</Comment>
-      <DataType>varchar(255)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="273" parent="253" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="274" parent="254" name="id">
-      <Position>1</Position>
-      <Comment>主键</Comment>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="275" parent="254" name="student_name">
-      <Position>2</Position>
-      <Comment>学生姓名</Comment>
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="276" parent="254" name="age">
-      <Position>3</Position>
-      <Comment>年龄</Comment>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="277" parent="254" name="sex">
-      <Position>4</Position>
-      <Comment>性别</Comment>
-      <DataType>varchar(1)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="278" parent="254" name="addr">
-      <Position>5</Position>
-      <Comment>家庭住址</Comment>
-      <DataType>varchar(255)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="279" parent="254" name="grade_id">
-      <Position>6</Position>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <index id="280" parent="254" name="grade_id">
-      <ColNames>grade_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="281" parent="254" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="282" parent="254" name="grade_id">
-      <ColNames>grade_id</ColNames>
-      <RefSchemaName>03-mybatis-@</RefSchemaName>
-      <RefTableName>grade</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
   </database-model>
 </dataSource>

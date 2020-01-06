@@ -12,11 +12,11 @@
          -->
         <collection property="studentList" ofType="StudentDTO">
             <id column="student_id" property="id" jdbcType="INTEGER"/>
-            <result column="student_name" property="name" jdbcType="VARCHAR"/>
+            <result column="student_name" property="studentName" jdbcType="VARCHAR"/>
             <result column="age" property="age" jdbcType="INTEGER"/>
             <result column="sex" property="sex" jdbcType="VARCHAR"/>
             <result column="addr" property="addr" jdbcType="VARCHAR"/>
-            <result column="grade_id" property="gradeEnum" jdbcType="INTEGER"/>
+            <result column="grade_id" property="gradeId" jdbcType="INTEGER"/>
             <!--如果要关联年级-->
             <association property="grade" javaType="Grade">
                 <id column="grade_id" property="id" jdbcType="INTEGER"/>

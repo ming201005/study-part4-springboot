@@ -1,7 +1,6 @@
 #1 study-part4-springboot介绍
 study-part4-springboot是《全栈工程师修炼之路》的Part4部分。本教程是书籍+源代码+视频（未来录制）
 本教室是本人原创教程，89%示例都经过本人所敲代码，引用他人示例的本人会标明引入来源。原创不容易，请支持。
-
 #2 源码包括：
 1. SpringMVC常用的注解；
 2. SpringBoot整合MyBatis的XML使用；
@@ -14,6 +13,8 @@ study-part4-springboot是《全栈工程师修炼之路》的Part4部分。本�
 9. SpringBoot实际项目案例；
 
 #3 数据库相关
+MySQL5 的链接：jdbc:mysql://localhost:3306/02-mybatisxml?allowMultiQueries=true
+MySQL8 的链接：jdbc:mysql://localhost:3306/02-mybatisxml?serverTimezone=UTC&allowMultiQueries=true
 ##3.1 基本步骤：
 1. 请先创建数据库；
 2. 据库不对应的请自行调整；

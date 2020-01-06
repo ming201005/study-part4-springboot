@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="05-jsp-test">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.14">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.17">
     <root id="1">
       <ServerVersion>5.7.25</ServerVersion>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -18,7 +18,6 @@
     </schema>
     <schema id="5" parent="1" name="05-jsp-test">
       <Current>1</Current>
-      <Visible>1</Visible>
       <Collation>utf8_bin</Collation>
     </schema>
     <schema id="6" parent="1" name="CRMDB_V5_SAAS">
@@ -978,33 +977,5 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="251" parent="5" name="student"/>
-    <column id="252" parent="251" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="253" parent="251" name="name">
-      <Position>2</Position>
-      <DataType>varchar(45)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="254" parent="251" name="sex">
-      <Position>3</Position>
-      <DataType>varchar(5)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="255" parent="251" name="age">
-      <Position>4</Position>
-      <DataType>int(11)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="256" parent="251" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
   </database-model>
 </dataSource>
