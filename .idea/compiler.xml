@@ -6,15 +6,35 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="demo01" />
+        <module name="01-spring-boot-MVC" />
+        <module name="02-mybatisxml" />
+        <module name="03-mybatis-@" />
+        <module name="04-mybatis-plus" />
+        <module name="05-jpa-test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="01-spring-boot-MVC" target="1.8" />
+      <module name="02-demo" target="1.8" />
+      <module name="02-mybatisxml" target="1.8" />
+      <module name="03-demo" target="1.8" />
+      <module name="03-mybatis-@" target="1.8" />
+      <module name="03-mybatis@" target="1.8" />
+      <module name="04-mybatis-plus" target="1.8" />
+      <module name="05-jpa-test" target="1.8" />
       <module name="demo01" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="01-spring-boot-MVC" options="-parameters" />
+      <module name="02-demo" options="-parameters" />
+      <module name="02-mybatisxml" options="-parameters" />
+      <module name="03-demo" options="-parameters" />
+      <module name="03-mybatis-@" options="-parameters" />
+      <module name="03-mybatis@" options="-parameters" />
+      <module name="04-mybatis-plus" options="-parameters" />
+      <module name="05-jpa-test" options="-parameters" />
       <module name="demo01" options="-parameters" />
     </option>
   </component>

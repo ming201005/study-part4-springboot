@@ -1,0 +1,24 @@
+{
+  "name" : "Grade",
+  "comment" : "年级信息表",
+  "fullColumn" : [ {
+    "name" : "id",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "gradeName",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  } ],
+  "pkColumn" : null,
+  "otherColumn" : null,
+  "savePackageName" : "com.springboot.mybatisxml.model",
+  "savePath" : "./02-mybatisxml/src/main/java/com/springboot/mybatisxml/model",
+  "saveModelName" : "02-mybatisxml"
+}

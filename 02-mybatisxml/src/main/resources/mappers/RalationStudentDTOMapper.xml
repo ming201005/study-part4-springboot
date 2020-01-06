@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.mybatisxml.dao.RalationDao">
+    <!--===================1：1 配置====================-->
+    <!--以学生维度看，学生是主表，年级是外键表。本质上属于1对1关系-->
+    <!--配置返回数据类型-->
+    <resultMap id="studentMap" type="StudentDTO">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="student_name" property="name" jdbcType="VARCHAR"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="addr" property="addr" jdbcType="VARCHAR"/>
+        <!--配置关系映射-->
+        <association property="grade" javaType="Grade">
+            <id column="grade_id" property="id" jdbcType="INTEGER"/>
+            <result column="grade_name" property="gradeName" jdbcType="VARCHAR"/>
+        </association>
+    </resultMap>
+    <!--1:1 关联查询-->
+    <select id="getStudents" resultMap="studentMap">
+       select
+          s.*,
+          g.grade_name
+       from student s LEFT JOIN  grade g ON  s.grade_id = g.id
+       order by g.id asc ,s.age asc
+    </select>
+</mapper>

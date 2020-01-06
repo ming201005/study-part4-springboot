@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.mybatisxml.dao.StudentDao">
+
+    <!--配置返回数据类型-->
+    <resultMap type="Student" id="listStudent">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="student_name" property="name" jdbcType="VARCHAR"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="addr" property="addr" jdbcType="VARCHAR"/>
+        <result column="grade_id" property="gradeEnum" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--查询全部数据-->
+    <select id="allStudents" resultMap="listStudent">
+       select * from student
+    </select>
+
+    <!--新增数据-->
+    <insert id="add" parameterType="Student">
+        insert  into student(student_name, age, sex, addr, grade_id)
+        values (#{name},#{age},#{sex},#{addr},#{gradeEnum})
+    </insert>
+
+    <!--根据id修改数据-->
+    <update id="edit" parameterType="Student">
+        update student set
+            student_name = #{name},
+            age = #{age},
+            sex = #{sex},
+            addr = #{addr},
+            grade_id = #{gradeEnum}
+        where  id=#{id}
+    </update>
+
+    <!--根据id删除数据-->
+    <delete id="delete" parameterType="Integer">
+        delete from student where id = #{id}
+    </delete>
+
+    <!--插入返回ID,加入useGeneratedKeys="true" keyProperty="id"即可
+      由于return 返回的结果是插入条数的值。
+      因此，获得id的方法是：String id = student.getId()
+    -->
+    <insert id="addReturnId" parameterType="Student"
+            useGeneratedKeys="true" keyProperty="id">
+        insert  into student(student_name, age, sex, addr, grade_id)
+        values (#{name},#{age},#{sex},#{addr},#{gradeEnum})
+    </insert>
+
+    <!--插入返回ID 用<selectKey>也达到效果
+    获取ID方式同上面的方式一样-->
+    <insert id="addReturnId02" parameterType="Student">
+        insert into student(student_name, age, sex, addr, grade_id)
+        values (#{name},#{age},#{sex},#{addr},#{gradeEnum})
+        <!-- 指定结果类型resultType，keyProperty是属性，
+            自动返回到属性id中，order是次序，after是指获取id是在于插入后 -->
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <!--根据id修改局部数据-->
+    <update id="editFields" parameterType="Student">
+        update student
+        <set>
+            <if test="name!=null">student_name = #{name},</if>
+            <if test="age !=null">age = #{age},</if>
+            <!--注意char的默认值是'\u0000'-->
+            <if test="sex !='\u0000'">sex = #{sex},</if>
+            <if test="addr !=null">addr = #{addr},</if>
+            <if test="gradeEnum !=null">grade_id = #{gradeEnum}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--根据多条件查询查询全部数据-->
+    <select id="getStudentsByQuery" resultType="map">
+       select id, student_name as name, age, sex, addr
+       from student
+       <where>
+        <if test="name !=null and name !=''">
+            <!--like 拼接方案1： student_name like "%"#{name}"%" -->
+            <!--like 拼接方案2： student_name like '%${name}%'  -->
+            <!--like 拼接方案3： student_name like CONCAT('%','${name}','%')  -->
+            <!--请注意以上3种方案中的 #、 $、单引号、双引号的使用-->
+            student_name like '%${name}%'
+        </if>
+        <!--判断条件是：age02大于age01,age01大于0-->
+        <if test="age02>age01 and age01>=0">
+          and age between #{age01} and #{age02}
+        </if>
+        <if test="sex !='\u0000'">
+            and sex = #{sex}
+        </if>
+       </where>
+    </select>
+
+    <!--根据多个id批量删除,注意方法变量是可变参数-->
+    <delete id="deleteByIds" parameterType="Integer">
+        delete from student where id in
+        <!--拼接成 where id in（1，2，3，4，5）-->
+        <foreach collection="ids"
+                 item="id"
+                 open="("
+                 close=")"
+                 separator=","
+                 index="index">
+            #{id}
+        </foreach>
+        <!--
+        举一反三：也可以在"( )"内循环，如：
+        WHERE ID IN(<foreach > ...... </foreach>)
+        -->
+    </delete>
+
+    <!--批量插入数据-->
+    <!--
+    插入多条记录的SQL格式是：
+    insert into tableName(field1,field2,field3)
+    values  (值1，值2，值3),
+            (值1，值2，值3),
+            (值1，值2，值3),
+            (值1，值2，值3)
+    -->
+    <insert id="insertBatch">
+        insert  into student(student_name, age, sex, addr, grade_id)
+        values
+        <foreach collection="students" item="item" separator=",">
+            (#{item.name},#{item.age},#{item.sex},#{item.addr},#{item.gradeEnum})
+        </foreach>
+    </insert>
+
+    <!--批量修改数据
+     方案1：更新某一个字段成同一个值，改变where条件即可，可参考批量删。除功能的配置，此处就不再配置。
+     方案2：拼接方式(多条完整的SQL，用";"分开)
+     方案3：组装成一条SQL语句
+     方案4：使用MySQL特性 ON DUPLICATE KEY UPDAT
+     本示例属于方案2，拼接SQL思路：
+     update tableName set field1 = 值1.1,field2 = 值2.1,field3 = 值3.1 where ...;
+     update tableName set field1 = 值1.2,field2 = 值2.2,field3 = 值3.2 where ...;
+     update tableName set field1 = 值1.3,field2 = 值2.3,field3 = 值3.3 where ...;
+     update tableName set field1 = 值1.4,field2 = 值2.4,field3 = 值3.4 where ...;
+    -->
+    <!--批量的根据id修改局部数据 普通循环-->
+    <update id="editBatch01">
+        <foreach collection="students" item="item" separator=";">
+            update student
+            <set>
+                <if test="item.name!=null">student_name=#{item.name},</if>
+                <if test="item.age !=null">age=#{item.age},</if>
+                <!--注意char的默认值是'\u0000'-->
+                <if test="item.sex !='\u0000'">sex=#{item.sex},</if>
+                <if test="item.addr !=null">addr= #{item.addr},</if>
+                <if test="item.gradeEnum !=null">grade_id=#{item.gradeEnum}</if>
+            </set>
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+
+
+</mapper>

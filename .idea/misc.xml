@@ -6,8 +6,19 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/demo01/pom.xml" />
+        <option value="$PROJECT_DIR$/01-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/03-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/02-mybatisxml/pom.xml" />
+        <option value="$PROJECT_DIR$/03-mybatis@/pom.xml" />
+        <option value="$PROJECT_DIR$/03-mybatis-@/pom.xml" />
+        <option value="$PROJECT_DIR$/04-mybatis-plus/pom.xml" />
+        <option value="$PROJECT_DIR$/05-jpatest/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/03-mybatis@/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">

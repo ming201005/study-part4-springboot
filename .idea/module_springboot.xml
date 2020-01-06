@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_springboot" default="compile.module.springboot">
+  <dirname property="module.springboot.basedir" file="${ant.file.module_springboot}"/>
+  
+  <property name="module.jdk.home.springboot" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.springboot" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.springboot" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.springboot" value="-encoding UTF-8 -source 10 -target 10 ${compiler.args}"/>
+  
+  <property name="springboot.output.dir" value="undefined"/>
+  <property name="springboot.testoutput.dir" value="undefined"/>
+  
+  <path id="springboot.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="springboot.module.production.classpath">
+    <path refid="${module.jdk.classpath.springboot}"/>
+  </path>
+  
+  <path id="springboot.runtime.production.module.classpath"/>
+  
+  <path id="springboot.module.classpath">
+    <path refid="${module.jdk.classpath.springboot}"/>
+  </path>
+  
+  <path id="springboot.runtime.module.classpath"/>
+  
+  
+  <patternset id="excluded.from.module.springboot">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.springboot">
+    <patternset refid="excluded.from.module.springboot"/>
+  </patternset>
+  
+  
+  <target name="compile.module.springboot" depends="compile.module.springboot.production,compile.module.springboot.tests" description="Compile module springboot"/>
+  
+  <target name="compile.module.springboot.production" depends="register.custom.compilers" description="Compile module springboot; production classes"/>
+  
+  <target name="compile.module.springboot.tests" depends="register.custom.compilers,compile.module.springboot.production" description="compile module springboot; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.springboot" description="cleanup module">
+    <delete dir="${springboot.output.dir}"/>
+    <delete dir="${springboot.testoutput.dir}"/>
+  </target>
+</project>

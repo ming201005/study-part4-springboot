@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.mybatisxml.dao.RalationDao">
+    <!--===================n：m 配置====================-->
+    <!--课程和学生的关系是多对多，以课程为维度-->
+    <resultMap id="CourseStudentMap" type="CourseStudentDTO">
+        <id column="course_id" property="id" javaType="INTEGER"/>
+        <result column="course_name" property="courseName" jdbcType="VARCHAR"/>
+        <!--配置学生子集映射，注意映射的是StudentCourseDTO-->
+        <collection property="studentList" ofType="StudentCourseDTO">
+            <id column="student_id" property="id" jdbcType="INTEGER"/>
+            <result column="student_name" property="name" jdbcType="VARCHAR"/>
+            <result column="age" property="age" jdbcType="INTEGER"/>
+            <result column="sex" property="sex" jdbcType="VARCHAR"/>
+            <result column="addr" property="addr" jdbcType="VARCHAR"/>
+            <result column="grade_id" property="gradeEnum" jdbcType="INTEGER"/>
+        </collection>
+    </resultMap>
+
+    <!--课程和学生的关系是多对多，以学生为维度-->
+    <resultMap id="StudentCourseMap" type="StudentCourseDTO">
+        <id column="student_id" property="id" jdbcType="INTEGER"/>
+        <result column="student_name" property="name" jdbcType="VARCHAR"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="addr" property="addr" jdbcType="VARCHAR"/>
+        <result column="grade_id" property="gradeEnum" jdbcType="INTEGER"/>
+        <!--配置课程子集映射，注意映射的是CourseStudentDTO-->
+        <collection property="courseList" ofType="CourseStudentDTO">
+            <id column="course_id" property="id" javaType="INTEGER"/>
+            <result column="course_name" property="courseName" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
+    <!--基础查询语句-->
+    <sql id="baseSQL">
+        -- 三张表关联
+        SELECT
+          a.id as course_id,
+            a.course_name,
+            c.id as student_id,
+            c.student_name,
+            c.sex,
+            c.age,
+            c.addr,
+            c.grade_id
+        FROM course a, course_student_mid b, student c
+        WHERE a.id = b.course_id
+        and   b.student_id = c.id
+        ORDER BY course_id asc,c.age asc
+    </sql>
+    <!--3张表关联查询：课程表、中间表、学生表：以课程为维度-->
+    <select id="getCourseStudent" resultMap="CourseStudentMap">
+       <include refid="baseSQL"/>
+    </select>
+    <!--3张表关联查询：课程表、中间表、学生表：以学生为维度-->
+    <select id="getStudentCourse" resultMap="StudentCourseMap">
+        <include refid="baseSQL"/>
+    </select>
+</mapper>

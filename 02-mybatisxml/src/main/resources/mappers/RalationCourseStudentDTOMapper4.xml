@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.mybatisxml.dao.RalationDao">
+    <!--===================n：m 配置====================-->
+    <!--课程和学生的关系是多对多，注意在同一个mapper namespace下，id不能相同-->
+    <resultMap id="courseStudentMap4" type="CourseStudentGradeDTO">
+        <id column="course_id" property="id" javaType="INTEGER"/>
+        <result column="course_name" property="courseName" jdbcType="VARCHAR"/>
+        <!--配置学生子集映射，注意映射的是StudentDTO类
+            仔细和RalationCourseStudentDTOMapper3.xml对比
+         -->
+        <collection property="studentList" ofType="StudentDTO">
+            <id column="student_id" property="id" jdbcType="INTEGER"/>
+            <result column="student_name" property="name" jdbcType="VARCHAR"/>
+            <result column="age" property="age" jdbcType="INTEGER"/>
+            <result column="sex" property="sex" jdbcType="VARCHAR"/>
+            <result column="addr" property="addr" jdbcType="VARCHAR"/>
+            <result column="grade_id" property="gradeEnum" jdbcType="INTEGER"/>
+            <!--如果要关联年级-->
+            <association property="grade" javaType="Grade">
+                <id column="grade_id" property="id" jdbcType="INTEGER"/>
+                <result column="grade_name" property="gradeName" jdbcType="VARCHAR"/>
+            </association>
+        </collection>
+    </resultMap>
+    <!--4张表关联查询-->
+    <select id="getCourseStudent4" resultMap="courseStudentMap4">
+        -- 四张表关联
+        SELECT
+            a.id as course_id,
+            a.course_name,
+            c.id as student_id,
+            c.student_name,
+            c.sex,
+            c.age,
+            d.id as grade_id,
+            d.grade_name,
+            c.addr
+        FROM course a, course_student_mid b, student c, grade d
+        WHERE a.id = b.course_id
+        and   b.student_id = c.id
+        and   c.grade_id = d.id
+        ORDER BY course_id asc,d.id asc,c.age asc
+    </select>
+</mapper>
