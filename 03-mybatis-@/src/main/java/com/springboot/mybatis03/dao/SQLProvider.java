@@ -51,7 +51,7 @@ public class SQLProvider {
      * @return
      */
     public String addOfSQLProvider(Map param){
-        //参数取值
+        //参数取值,如有需要可以按如下获取
         //Student student = (Student) param.get ("student");
         return new SQL (){
             {
@@ -68,7 +68,7 @@ public class SQLProvider {
     }
 
     /**
-     * 批量查询数据的SQL
+     * 批量新增数据的SQL拼接方案
      * @param param
      * @return
      */
