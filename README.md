@@ -16,9 +16,12 @@ study-part4-springboot是《全栈工程师修炼之路》的Part4部分。本�
 9. SpringBoot实际项目案例；
 
 # 3 数据库相关
+***注意MySQL5和MySQL8链接的区别：***
+```
+ 1. MySQL5 的链接：jdbc:mysql://localhost:3306/db?allowMultiQueries=true
+ 2. MySQL8 的链接：jdbc:mysql://localhost:3306/db?serverTimezone=UTC&allowMultiQueries=true
+ ```
 
-1. MySQL5 的链接：jdbc:mysql://localhost:3306/db?allowMultiQueries=true
-2. MySQL8 的链接：jdbc:mysql://localhost:3306/db?serverTimezone=UTC&allowMultiQueries=true
 # 4 基本步骤：
 1. 请先创建数据库（在db文件夹下，数据库名称和项目名称一致）；
 2. 据库不对应的请自行调整；
@@ -43,7 +46,7 @@ study-part4-springboot是《全栈工程师修炼之路》的Part4部分。本�
 * 神华集团内蒙古准能能源生产监控系统；
 * 广汽乘用车主数据管理平台；
 * 佛山政府某区公有资产管理和监控平台；
-* 湖南株洲三三一军工厂主数据管理平台；
+* 湖南株洲三三一军工厂主数据管理平台
 * 深圳市毅德控股集团商业地产商业管理；
 * 北京某央企担保业务和全国各省市农业担保业务管理平台；
 * 自主研发低代码平台；
