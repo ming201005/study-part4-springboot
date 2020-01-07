@@ -60,4 +60,9 @@ study-part4-springboot是《全栈工程师修炼之路》的Part4部分。本�
 ![image.png](https://i0.hdslb.com/bfs/album/d80cf544a85a613a8bc3bef49660640c8b028dcf.png)
 ![image.png](https://i0.hdslb.com/bfs/album/3f9ac075591885ff8f1c7020ca496a1adfb9b79c.png)
 ![image.png](https://i0.hdslb.com/bfs/album/09a0f3d95b59680c37340437d06ddebe673e7544.png)
-
+# 7 示例部分截图
+![image.png](https://upload-images.jianshu.io/upload_images/18601763-5710a84a13934fdd.jpg?imageMogr2/auto-orient/strip|imageView2/2/format/webp)
+![image.png](https://upload-images.jianshu.io/upload_images/18601763-a2cfde3df2c5cd56.jpg?imageMogr2/auto-orient/strip|imageView2/2/format/webp)
+![image.png](https://upload-images.jianshu.io/upload_images/18601763-cd63deeaefff7420.jpg?imageMogr2/auto-orient/strip|imageView2/2/format/webp)
+![image.png](https://upload-images.jianshu.io/upload_images/18601763-c030aa12bba12c94.jpg?imageMogr2/auto-orient/strip|imageView2/2/format/webp)
+![image.png](https://upload-images.jianshu.io/upload_images/18601763-58f9303579dd99af.jpg?imageMogr2/auto-orient/strip|imageView2/2/format/webp)
