@@ -13,7 +13,7 @@ study-part4-springboot是《全栈工程师修炼之路》的Part4部分。本�
 6. SpringBoot整合MongDB；（更新中）
 7. SpringBoot整合ES；（更新中）
 8. SpringBoot更多整合；
-9. SpringBoot实际项目案例；
+9. SpringBoot实际项目案 例；
 
 # 3 数据库相关
 ***注意MySQL5和MySQL8链接的区别：***
@@ -33,12 +33,11 @@ study-part4-springboot是《全栈工程师修炼之路》的Part4部分。本�
  
   ![image.png](https://upload-images.jianshu.io/upload_images/18601763-68f09e5e7bcd4262.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 **悄悄的扫一下微信，就可以获得PDF电子书，B站：[https://space.bilibili.com/432367773](https://space.bilibili.com/432367773)**
- 
-1. 年 毕业于重庆交通大学计算机科学与技术。
-2. 6至2008年 就职于北京东方国信，技术方向：Java、数据挖掘、算法和分析、Oracle、Linux。
-3. 2009至2015年 就职于斯欧股份（IBM顶级实施商），任职：华南区SOA架构师、项目总监。技术方向：EJB、Java、SOA（如：WebSphere Portal、BPM、ESB、MQ、Cognos BI、SSO等）。
-4. 2015至2018年 在深圳创业，担任CTO。技术方向：微服务、GO、SpringCloud、Docker虚拟化、高性能搜索引擎ES、高性能缓存Redis。主要研发分布式电商以及大数据方向产品。在创业2年内公司获得数千万融资。
-5. 2018年至今 回重庆二次创业，担任CTO，技术方向：Java、PHP、VUE、WX、微服务、SpringCloud、Dubbo等分布式架构，主持研发“低代码平台”。
+
+* 2006至2008年 就职于北京东方国信，技术方向：Java、数据挖掘、算法和分析、Oracle、Linux。
+* 2009至2015年 就职于斯欧股份（IBM顶级实施商），任职：华南区SOA架构师、项目总监。技术方向：EJB、Java、SOA（如：WebSphere Portal、BPM、ESB、MQ、Cognos BI、SSO等）。
+* 2015至2018年 在深圳创业，担任CTO。技术方向：微服务、GO、SpringCloud、Docker虚拟化、高性能搜索引擎ES、高性能缓存Redis。主要研发分布式电商以及大数据方向产品。在创业2年内公司获得数千万融资。
+* 2018年至今 回重庆二次创业，担任CTO，技术方向：Java、PHP、VUE、WX、微服务、SpringCloud、Dubbo等分布式架构，主持研发“低代码平台”。
 
 **参与和主导过的部分项目（其他项目因商业化不方便提供）：**
 * 国联通第二、第三期经营分析系统；
