@@ -29,7 +29,7 @@ study-part4-springboot是《全栈工程师修炼之路》的Part4部分。本�
 # 5 作者简介 莫小明
  
   ![image.png](https://upload-images.jianshu.io/upload_images/18601763-68f09e5e7bcd4262.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-**微信获得PDF电子书，B站：[space.bilibili.com/432367773](space.bilibili.com/432367773)**
+**悄悄的扫一下微信，就可以获得PDF电子书，B站：[space.bilibili.com/432367773](space.bilibili.com/432367773)**
  
 1. 年 毕业于重庆交通大学计算机科学与技术。
 2. 6至2008年 就职于北京东方国信，技术方向：Java、数据挖掘、算法和分析、Oracle、Linux。
