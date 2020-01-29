@@ -5,6 +5,7 @@ study-part4-springboot是《全栈工程师修炼之路》的Part4部分。本�
 原创不容易，请支持。如有雷同，请多多包涵！
 
 # 2 源码包括：
+0. Part1中用到的ajax示例-后台交互部分；
 1. SpringMVC常用的注解；
 2. SpringBoot整合MyBatis的XML使用；
 3. SpringBoot整合MyBatis的注解使用；

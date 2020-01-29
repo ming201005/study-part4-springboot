@@ -57,5 +57,11 @@
         <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="MySQL - 00.codingstudy-ajax@localhost" uuid="8c55b24a-b994-4616-b9f9-1c6a6316411b">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/00.codingstudy-ajax?serverTimezone=UTC</jdbc-url>
+    </data-source>
   </component>
 </project>

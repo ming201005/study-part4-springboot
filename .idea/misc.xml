@@ -15,12 +15,8 @@
         <option value="$PROJECT_DIR$/05-jpatest/pom.xml" />
         <option value="$PROJECT_DIR$/01-spring-boot-MVC/pom.xml" />
         <option value="$PROJECT_DIR$/05-jpa-test/pom.xml" />
+        <option value="$PROJECT_DIR$/00-codingstudy-ajax/pom.xml" />
       </list>
-    </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/03-mybatis@/pom.xml" />
-      </set>
     </option>
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -37,5 +33,5 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_10" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_10" project-jdk-name="13" project-jdk-type="JavaSDK" />
 </project>

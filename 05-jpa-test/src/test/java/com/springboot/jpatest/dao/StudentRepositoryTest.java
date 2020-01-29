@@ -40,7 +40,6 @@ public class StudentRepositoryTest {
         System.out.println (optionalStudent.get ());
     }
 
-
     /**
      * 新增
      */
