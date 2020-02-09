@@ -1,11 +1,11 @@
-package com.springboot.demo01;
+package com.springboot.codingstudty;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Demo01Application {
+public class MainApplication {
     public static void main(String[] args) {
-        SpringApplication.run (Demo01Application.class, args);
+        SpringApplication.run (MainApplication.class, args);
     }
 }

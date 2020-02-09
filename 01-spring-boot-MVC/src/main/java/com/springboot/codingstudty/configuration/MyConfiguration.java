@@ -1,6 +1,5 @@
-package com.springboot.demo01.configuration;
+package com.springboot.codingstudty.configuration;
 
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,13 +13,13 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class MyConfiguration {
-
     //默认
     @Bean
     UserAction userAction(){
         System.out.println ("默认名字是userAction");
         return new UserAction();
     }
+
 
     @Bean(value = "userAction1")
     UserAction userAction1(){

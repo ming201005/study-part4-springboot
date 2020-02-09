@@ -1,4 +1,4 @@
-package com.springboot.demo01.comm;
+package com.springboot.codingstudty.comm;
 
 
 import org.springframework.beans.factory.annotation.Value;

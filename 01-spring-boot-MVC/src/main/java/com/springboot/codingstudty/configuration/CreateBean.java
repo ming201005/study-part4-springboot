@@ -1,4 +1,4 @@
-package com.springboot.demo01.configuration;
+package com.springboot.codingstudty.configuration;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -14,18 +14,14 @@ import org.springframework.stereotype.Component;
  * @see
  */
 @Component
-public class CallBean implements ApplicationContextAware {
-
+public class CreateBean implements ApplicationContextAware {
     private ApplicationContext applicationContext;
-
     @Override
     public void setApplicationContext(ApplicationContext applicationContext)
             throws BeansException {
         this.applicationContext=applicationContext;
     }
-
     public ApplicationContext getApplicationContext() {
         return applicationContext;
     }
-
 }

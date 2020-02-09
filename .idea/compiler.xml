@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="springbootMVC" />
         <module name="mybatisxml" />
         <module name="03-mybatis-@" />
         <module name="00-codingstudy-ajax" />
@@ -15,7 +16,6 @@
         <module name="mybatisplus" />
         <module name="01-spring-boot-MVC" />
         <module name="mybatis03" />
-        <module name="demo01" />
         <module name="05-jpa-test" />
       </profile>
     </annotationProcessing>
@@ -29,11 +29,11 @@
       <module name="03-mybatis@" target="1.8" />
       <module name="04-mybatis-plus" target="1.8" />
       <module name="05-jpa-test" target="1.8" />
-      <module name="demo01" target="1.8" />
       <module name="jpatest" target="1.8" />
       <module name="mybatis03" target="1.8" />
       <module name="mybatisplus" target="1.8" />
       <module name="mybatisxml" target="1.8" />
+      <module name="springbootMVC" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -47,11 +47,11 @@
       <module name="03-mybatis@" options="-parameters" />
       <module name="04-mybatis-plus" options="-parameters" />
       <module name="05-jpa-test" options="-parameters" />
-      <module name="demo01" options="-parameters" />
       <module name="jpatest" options="-parameters" />
       <module name="mybatis03" options="-parameters" />
       <module name="mybatisplus" options="-parameters" />
       <module name="mybatisxml" options="-parameters" />
+      <module name="springbootMVC" options="-parameters" />
     </option>
   </component>
 </project>

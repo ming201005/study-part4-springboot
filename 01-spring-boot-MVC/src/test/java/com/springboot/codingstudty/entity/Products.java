@@ -1,8 +1,4 @@
-package com.springboot.demo01.entity;
-
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
-import java.util.List;
+package com.springboot.codingstudty.entity;
 
 /**
  * 描述：商品

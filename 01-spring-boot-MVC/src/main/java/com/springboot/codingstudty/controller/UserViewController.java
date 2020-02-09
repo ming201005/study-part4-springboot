@@ -1,4 +1,4 @@
-package com.springboot.demo01.controller;
+package com.springboot.codingstudty.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,12 +31,13 @@ public class UserViewController {
         return user;
     }
 
+
     /**
      * 返回ModelAndView
      * @return
      */
     @RequestMapping("/uc/info")
-    public ModelAndView index(){
+    public ModelAndView userInfo(){
         ModelAndView modelAndView = new ModelAndView ();
         //跳转到user.html页面
         modelAndView.setViewName ("user");
@@ -48,7 +49,7 @@ public class UserViewController {
      * @return
      */
     @GetMapping("/uc/info2")
-    public String userIndex(){
+    public String userInfo2(){
         return "user";
     }
 

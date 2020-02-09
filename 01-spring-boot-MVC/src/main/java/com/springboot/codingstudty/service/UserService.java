@@ -1,4 +1,4 @@
-package com.springboot.demo01.service;
+package com.springboot.codingstudty.service;
 
 import org.springframework.stereotype.Service;
 

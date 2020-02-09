@@ -1,4 +1,4 @@
-package com.springboot.demo01.entity;
+package com.springboot.codingstudty.entity;
 
 
 import lombok.Data;

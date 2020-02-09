@@ -1,4 +1,4 @@
-package com.springboot.demo01.dao;
+package com.springboot.codingstudty.dao;
 
 
 import org.springframework.stereotype.Repository;
