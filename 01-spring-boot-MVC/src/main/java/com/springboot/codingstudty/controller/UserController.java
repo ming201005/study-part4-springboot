@@ -7,10 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 描述：本类有什么功能？
- * 1、TODO
- * 2、TODO
- * 3、TODO
+ * 描述：get/post/put/delete四个注解的使用
  *
  * @author ming
  * @version 1.0
