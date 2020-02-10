@@ -1,4 +1,4 @@
-package com.springboot.codingstudty.entity;
+package com.springboot.codingstudty.test;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;

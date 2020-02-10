@@ -1,6 +1,6 @@
 package com.springboot.codingstudty.controller;
 
-import com.springboot.codingstudty.entity.User;
+import com.springboot.codingstudty.test.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;

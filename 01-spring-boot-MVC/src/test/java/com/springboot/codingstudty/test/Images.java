@@ -1,4 +1,4 @@
-package com.springboot.codingstudty.entity;
+package com.springboot.codingstudty.test;
 
 /**
  * 描述：商品图片
