@@ -5,7 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-//@MapperScan("com.springboot.mybatisxml.mapper")
+//@MapperScan("com.springboot.mybatisxml.dao")
+//同等于在每个Dao层加@Mapper注解
 public class MybatisxmlApplication {
 
     public static void main(String[] args) {

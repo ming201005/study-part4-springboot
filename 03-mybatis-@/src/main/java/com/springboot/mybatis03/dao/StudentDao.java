@@ -199,7 +199,7 @@ public interface StudentDao {
             //以下grade_name可以不用映射
             //@Result(column = "grade_name",property = "gradeName"),
             @Result(column = "id",property = "students",
-                many = @Many(select = "getStudentByGradeId",fetchType = FetchType.EAGER)
+                many = @Many(select = "getStudentByGradeId",fetchType = FetchType.LAZY)
             )
     })
     List<GradeDTO> getRalation02();

@@ -24,9 +24,9 @@ public class UserViewController {
     public  Map<String,Object> getJson(){
         //模拟一个用户
         Map<String,Object> user = new HashMap<> ();
-        user.put ("id",2);
-        user.put ("name","小兰");
-        user.put ("age",19);
+        user.put ("id",100);
+        user.put ("name","ResponseBody");
+        user.put ("age",25);
         //返回这个用户
         return user;
     }

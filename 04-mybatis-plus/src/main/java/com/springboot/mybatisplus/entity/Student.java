@@ -23,8 +23,13 @@ public class Student  {
     Integer gradeId;
 
     //逻辑删除 ,测试逻辑删除请启用如下注解
+    //如果真实的insert、update测试功能。请先屏蔽。
     //@TableLogic
     Integer flag ;
+
+    //数据库不存储该值
+//    @TableField(exist = false)
+//    String description;
 
     public Student() {
 

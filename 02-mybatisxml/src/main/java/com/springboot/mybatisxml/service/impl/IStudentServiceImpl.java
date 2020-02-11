@@ -20,7 +20,7 @@ import java.util.Map;
  * @see
  */
 @Service
-public class IStudentServiceImpl implements IStudentService{
+public class IStudentServiceImpl implements IStudentService {
     @Autowired
     StudentDao studentDao;
 
