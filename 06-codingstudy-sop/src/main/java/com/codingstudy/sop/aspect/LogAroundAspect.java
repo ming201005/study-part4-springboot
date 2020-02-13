@@ -5,6 +5,9 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 @Aspect
 @Component
 public class LogAroundAspect {
@@ -15,18 +18,15 @@ public class LogAroundAspect {
 //    }
 
     @Around("@annotation(logAnnotation)")
-    public Object aroundMethod(ProceedingJoinPoint joinPoint, LogAnnotation logAnnotation) throws Throwable {
+    public Object aroundMethod(ProceedingJoinPoint joinPoint,
+                               LogAnnotation logAnnotation) throws Throwable {
         Object rs = null;
+        Object[] args = joinPoint.getArgs();
         System.out.println("1-------类名称："+joinPoint.getTarget().getClass().getName());
         //方法
         System.out.println("2-------方法名称："+logAnnotation.value());
-        System.out.println("3-------参数：");
-        Object[] args = joinPoint.getArgs();
-        //打印参数
-        for (Object arg : args) {
-            System.out.print(arg +"  , ");
-        }
-        System.out.println();
+        System.out.println("3-------参数："+Arrays.asList(args));
+
         try {
             rs = joinPoint.proceed(args);
             System.out.println("4------正确的执行完毕。。。。");

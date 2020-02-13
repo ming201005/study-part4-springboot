@@ -16,14 +16,15 @@ class TestServiceTest {
 
     @Test
     void test01(){
-        Map<String,Object> rs =  testService.getUser(100,"张三",25);
+        Map<String,Object> user =  testService.getUser(2);
 
-        System.out.println("test rs = " +rs);
+        System.out.println("user==》 " +user);
     }
 
     @Test
-    @LogAnnotation
     void test02(){
-        System.out.println("test02-----------------------");
+        Map<String,Object> user =  testService.getUser02(5);
+
+        System.out.println("user==》 " +user);
     }
 }

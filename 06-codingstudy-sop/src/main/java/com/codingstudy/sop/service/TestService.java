@@ -12,21 +12,31 @@ import java.util.Map;
 
 @Service
 public class TestService {
+
     Log log = LogFactory.getLog(TestService.class);
 
-    @LogAnnotation("getUser")
-    public Map<String, Object> getUser(int id, String name, int age) {
-
-        int a = 10;
-        int b = 50;
-        int c = a/b;
+    public Map<String, Object> getUser(int id) {
+        //虚构一个用户信息
         Map<String,Object> map = new HashMap<>();
         map.put("id",id);
-        map.put("name",name);
-        map.put("age",age);
-        map.put("price","河北");
-        //log.info("..............getUser方法");
-        System.out.println("getUser方法内部。。。。。");
+        map.put("name","ming206");
+        map.put("age","25岁");
+        map.put("addr","重庆");
+        log.info("getUser方法内部。。。。。");
+        //System.out.println("getUser方法内部。。。。。");
+        return map;
+    }
+
+
+    @LogAnnotation("getUser02")
+    public Map<String, Object> getUser02(int id) {
+        //虚构一个用户信息
+        Map<String,Object> map = new HashMap<>();
+        map.put("id",id);
+        map.put("name","ming206");
+        map.put("age","25岁");
+        map.put("addr","重庆");
+        System.out.println("getUser02方法内部。。。。。");
         return map;
     }
 }
