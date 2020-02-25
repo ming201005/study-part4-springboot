@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/00-01-codingstudy-aop/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/00-codingstudy-ajax/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/01-spring-boot-MVC" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/01-spring-boot-MVC/src/main/java" charset="UTF-8" />
@@ -12,6 +13,6 @@
     <file url="file://$PROJECT_DIR$/04-mybatis-plus/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/05-jpa-test" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/05-jpa-test/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/06-codingstudy-sop/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/06-codingstudy-Aop/src/main/java" charset="UTF-8" />
   </component>
 </project>

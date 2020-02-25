@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 /**
  * 让相关的方法的头尾有打印日志信息
  */
-//@Aspect
+@Aspect
 @Component
 public class LogAspect {
 
