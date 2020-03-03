@@ -15,8 +15,6 @@ import java.io.IOException;
 
 /**
  * 登录失败操作
- * @author K. L. Mao
- * @create 2019/1/15
  */
 @Component
 public class MyAuthenticationFailureHandler implements AuthenticationFailureHandler {

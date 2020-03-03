@@ -19,14 +19,13 @@ import java.io.IOException;
 
 /**
  * 拦截器
- * @author K. L. Mao
- * @create 2019/1/11
  */
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Autowired
     private UserDetailsService userDetailsService;
+
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
@@ -37,13 +36,23 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain chain) throws ServletException, IOException
     {
-        String token = request.getHeader(header);
+        String headerToken = request.getHeader(header);
+        System.out.println("headerToken = " + headerToken);
 
-        if (!StringUtils.isEmpty(token)) {
+        if (!StringUtils.isEmpty(headerToken)) {
+            String token = headerToken.replace("Bearer","").trim();
+            System.out.println("token = " + token);
+
             String username = jwtTokenUtil.getUsernameFromToken(token);
-            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null){
+
+            System.out.println("username = " + username);
+
+            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null)
+            {
+
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                if (jwtTokenUtil.validateToken(token, userDetails)){
+
+                if (jwtTokenUtil.validateToken(token, userDetails)) {
                     // 将用户信息存入 authentication，方便后续校验
                     UsernamePasswordAuthenticationToken authentication =
                             new UsernamePasswordAuthenticationToken(

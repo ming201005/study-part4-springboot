@@ -21,19 +21,10 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 /**
- * Spring Security 配置类
- * @EnableGlobalMethodSecurity 开启注解的权限控制，默认是关闭的。
- * prePostEnabled：使用表达式实现方法级别的控制，如：@PreAuthorize("hasRole('ADMIN')")
- * securedEnabled: 开启 @Secured 注解过滤权限，如：@Secured("ROLE_ADMIN")
- * jsr250Enabled: 开启 @RolesAllowed 注解过滤权限，如：@RolesAllowed("ROLE_ADMIN")
- *
- * @author K. L. Mao
- * @create 2019/1/11
+ * Security授权配置主文件
  */
-//@EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
-public class WebSecurity extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired

@@ -4,13 +4,11 @@ import com.alibaba.fastjson.JSONObject;
 
 import com.baomidou.mybatisplus.extension.api.R;
 import com.codingstudy.login.components.JwtTokenUtil;
-import com.codingstudy.login.components.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -22,14 +20,14 @@ import java.io.IOException;
 
 /**
  * 登录成功操作
- * @author K. L. Mao
- * @create 2019/1/15
  */
 @Component
 @Slf4j
 public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
 
+    @Autowired
+    JwtTokenUtil jwtTokenUtil;
 
 
     @Override
@@ -42,9 +40,10 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
         System.out.println("userDetails = " + userDetails);
 
         try {
-            JwtTokenUtil jwtTokenUtil = new JwtTokenUtil();
+
+            jwtTokenUtil = new JwtTokenUtil();
             String token = jwtTokenUtil.generateToken(userDetails);
-            //String token = JwtUtil.createJWT(userDetails);
+
             renderToken(httpServletResponse, token);
         }catch (Exception e) {
             System.out.println("here  err  ======================>>>>> " + e.getMessage());

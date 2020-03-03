@@ -19,10 +19,10 @@ import java.util.Map;
 @Component
 public class JwtTokenUtil {
 
-    private String secret = "1111111";
+    private String secret = "codingstudy202003";
 
     // 过期时间 毫秒
-    private Long expiration = 2592000L * 1000;
+    private long expiration = 2592000L * 1000;
 
     /**
      * 生成令牌
@@ -44,12 +44,13 @@ public class JwtTokenUtil {
      * @return 用户名
      */
     public String getUsernameFromToken(String token) {
-        String username;
+        String username = null;
         try {
             Claims claims = getClaimsFromToken(token);
+            System.out.println("claims = " + claims.toString());
             username = claims.getSubject();
         } catch (Exception e) {
-            username = null;
+            System.out.println("e = " + e.getMessage());
         }
         return username;
     }
@@ -108,9 +109,8 @@ public class JwtTokenUtil {
      * @return 令牌
      */
     private String generateToken(Map<String, Object> claims) {
-        Date expirationDate = new Date(expiration);
-        return Jwts.builder().setClaims(claims).setExpiration(expirationDate).signWith(SignatureAlgorithm.HS256, secret).compact();
-        //return "123456";
+        Date expirationDate = new Date(System.currentTimeMillis()+expiration);
+        return Jwts.builder().setClaims(claims).setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, secret).compact();
     }
 
     /**
@@ -120,11 +120,11 @@ public class JwtTokenUtil {
      * @return 数据声明
      */
     private Claims getClaimsFromToken(String token) {
-        Claims claims;
+        Claims claims = null;
         try {
             claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
         } catch (Exception e) {
-            claims = null;
+            System.out.println("getClaimsFromToken err = " + e.getMessage());
         }
         return claims;
     }

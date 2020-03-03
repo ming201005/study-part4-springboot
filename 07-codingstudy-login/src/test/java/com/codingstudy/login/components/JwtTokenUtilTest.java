@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class JwtTokenUtilTest {
@@ -26,6 +25,9 @@ class JwtTokenUtilTest {
 
     @Test
     void getUsernameFromToken() {
+        String token = "eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1ODU4MzcwNTIsInN1YiI6Im1pbmcyMDYiLCJpYXQiOjE1ODMyNDUwNTI2ODN9.OTNcwBfK2MYoA1pufz8FQnd4fO_2ZIpdTgiP6lPQD0VY02-IqnMnRP1EHb6lz3wG1I9lcqZj60o6EhdP6HQIvA";
+        String username =  jwtTokenUtil.getUsernameFromToken(token);
+        System.out.println("username = " + username);
     }
 
     @Test

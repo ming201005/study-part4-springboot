@@ -14,8 +14,6 @@ import java.io.IOException;
 
 /**
  * 权限校验处理器
- * @author K. L. Mao
- * @create 2019/1/11
  */
 @Component
 public class RestAccessDeniedHandler implements AccessDeniedHandler {
@@ -23,7 +21,7 @@ public class RestAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request,
                        HttpServletResponse response,
                        AccessDeniedException accessDeniedException) throws IOException, ServletException {
-//        CodeMsg.ACCESS_DENIED.renderError(response);
+
         response.setContentType("application/json;charset=UTF-8");
         ServletOutputStream out = response.getOutputStream();
         String str = JSONObject.toJSONString(R.failed("权限不足。。。。"));
