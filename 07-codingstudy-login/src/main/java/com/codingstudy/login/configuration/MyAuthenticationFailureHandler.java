@@ -17,17 +17,15 @@ import java.io.IOException;
  * 登录失败操作
  */
 @Component
-public class MyAuthenticationFailureHandler implements AuthenticationFailureHandler {
+public class MyAuthenticationFailureHandler extends JSONAuthentication implements AuthenticationFailureHandler {
     @Override
-    public void onAuthenticationFailure(HttpServletRequest httpServletRequest,
-                                        HttpServletResponse httpServletResponse,
+    public void onAuthenticationFailure(HttpServletRequest request,
+                                        HttpServletResponse response,
                                         AuthenticationException e) throws IOException, ServletException {
 
-        httpServletResponse.setContentType("application/json;charset=UTF-8");
-        ServletOutputStream out = httpServletResponse.getOutputStream();
-        String str = JSONObject.toJSONString(R.failed("登录失败。"));
-        out.write(str.getBytes("UTF-8"));
-        out.flush();
-        out.close();
+        R<String> data = R.failed("登录失败:"+e.getMessage());
+        //输出
+        this.WriteJSON(request, response, data);
+
     }
 }

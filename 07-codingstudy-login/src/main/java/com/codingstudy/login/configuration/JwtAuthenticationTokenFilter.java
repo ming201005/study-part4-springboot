@@ -38,8 +38,10 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     {
         String headerToken = request.getHeader(header);
         System.out.println("headerToken = " + headerToken);
+        System.out.println("request getMethod = " + request.getMethod());
 
         if (!StringUtils.isEmpty(headerToken)) {
+            //postMan测试时，自动假如的前缀，要去掉。
             String token = headerToken.replace("Bearer","").trim();
             System.out.println("token = " + token);
 

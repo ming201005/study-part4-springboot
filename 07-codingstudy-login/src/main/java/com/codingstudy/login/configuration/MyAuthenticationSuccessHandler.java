@@ -17,51 +17,39 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 登录成功操作
  */
 @Component
 @Slf4j
-public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
-
+public class MyAuthenticationSuccessHandler extends JSONAuthentication implements AuthenticationSuccessHandler {
 
     @Autowired
     JwtTokenUtil jwtTokenUtil;
 
-
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest httpServletRequest,
-                                        HttpServletResponse httpServletResponse,
+    public void onAuthenticationSuccess(HttpServletRequest request,
+                                        HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
+        //取得账号信息
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
+        //
         System.out.println("userDetails = " + userDetails);
+        //取token
+        jwtTokenUtil = new JwtTokenUtil();
+        String token = jwtTokenUtil.generateToken(userDetails);
+        Map<String,Object> map = new HashMap<>();
+        map.put("username",userDetails.getUsername());
+        map.put("auth",userDetails.getAuthorities());
+        map.put("token",token);
+        //装入token
+        R<Map<String,Object>> data = R.ok(map);
+        //输出
+        this.WriteJSON(request, response, data);
 
-        try {
-
-            jwtTokenUtil = new JwtTokenUtil();
-            String token = jwtTokenUtil.generateToken(userDetails);
-
-            renderToken(httpServletResponse, token);
-        }catch (Exception e) {
-            System.out.println("here  err  ======================>>>>> " + e.getMessage());
-        }
-    }
-
-    /**
-     * 渲染返回 token 页面,因为前端页面接收的都是Result对象，故使用application/json返回
-     *
-     * @param response
-     * @throws IOException
-     */
-    public void renderToken(HttpServletResponse response, String token) throws IOException {
-        response.setContentType("application/json;charset=UTF-8");
-        ServletOutputStream out = response.getOutputStream();
-        String str = JSONObject.toJSONString(R.ok(token));
-        out.write(str.getBytes("UTF-8"));
-        out.flush();
-        out.close();
     }
 }

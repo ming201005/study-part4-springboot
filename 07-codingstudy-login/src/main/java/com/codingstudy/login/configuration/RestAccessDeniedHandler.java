@@ -7,7 +7,6 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -16,17 +15,15 @@ import java.io.IOException;
  * 权限校验处理器
  */
 @Component
-public class RestAccessDeniedHandler implements AccessDeniedHandler {
+public class RestAccessDeniedHandler extends JSONAuthentication implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request,
                        HttpServletResponse response,
                        AccessDeniedException accessDeniedException) throws IOException, ServletException {
 
-        response.setContentType("application/json;charset=UTF-8");
-        ServletOutputStream out = response.getOutputStream();
-        String str = JSONObject.toJSONString(R.failed("权限不足。。。。"));
-        out.write(str.getBytes("UTF-8"));
-        out.flush();
-        out.close();
+        //装入token
+        R<String> data = R.failed("权限不足:"+accessDeniedException.getMessage());
+        //输出
+        this.WriteJSON(request, response, data);
     }
 }

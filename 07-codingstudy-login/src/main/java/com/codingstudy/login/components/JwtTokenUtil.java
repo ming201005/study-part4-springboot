@@ -12,17 +12,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 生成令牌，验证等等一些操作
- * @author K. L. Mao
- * @create 2019/1/10
+ * JWT生成令牌、验证令牌、获取令牌
  */
 @Component
 public class JwtTokenUtil {
-
-    private String secret = "codingstudy202003";
+    //私钥
+    private static final String SECRET_KEY = "codingstudy202003";
 
     // 过期时间 毫秒
-    private long expiration = 2592000L * 1000;
+    private  static final long EXPIRATION_TIME = 2592000L * 1000;
 
     /**
      * 生成令牌
@@ -109,8 +107,8 @@ public class JwtTokenUtil {
      * @return 令牌
      */
     private String generateToken(Map<String, Object> claims) {
-        Date expirationDate = new Date(System.currentTimeMillis()+expiration);
-        return Jwts.builder().setClaims(claims).setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, secret).compact();
+        Date expirationDate = new Date(System.currentTimeMillis()+ EXPIRATION_TIME);
+        return Jwts.builder().setClaims(claims).setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, SECRET_KEY).compact();
     }
 
     /**
@@ -122,14 +120,10 @@ public class JwtTokenUtil {
     private Claims getClaimsFromToken(String token) {
         Claims claims = null;
         try {
-            claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+            claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
         } catch (Exception e) {
             System.out.println("getClaimsFromToken err = " + e.getMessage());
         }
         return claims;
     }
-
-
-
-
 }

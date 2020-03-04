@@ -1,43 +1,43 @@
 package com.codingstudy.login.controller;
 
+import com.baomidou.mybatisplus.extension.api.R;
+import com.codingstudy.login.dao.ProductMapper;
+import com.codingstudy.login.entity.ProductEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("product")
 @CrossOrigin
 public class ProductController {
 
-    @GetMapping("get")
-    public String get(@RequestParam Map params) {
-        System.out.println("params = " + params);
-        return "helle...";
+    @Autowired
+    ProductMapper mapper;
+
+    /**
+     * 新增数据
+     * @param productEntity
+     * @return
+     */
+    @PostMapping
+    public R<ProductEntity> add(@RequestBody ProductEntity productEntity) {
+        //here....
+        System.out.println("productEntity = " + productEntity);
+        int rs = mapper.insert(productEntity);
+        return  R.ok(productEntity);
     }
 
+    /**
+     * 查询所有数据集
+     * @return
+     */
     @GetMapping
-    public List<Map<String,Object>> getProduct() {
-        List<Map<String,Object>> list = new ArrayList<>();
+    public R<List<ProductEntity>> getProduct() {
 
-        Map<String,Object> product = new HashMap();
-        product.put("id",1);
-        product.put("name","梨子");
-        list.add(product);
-
-        product = new HashMap();
-        product.put("id",2);
-        product.put("name","桃子");
-        list.add(product);
-
-        product = new HashMap();
-        product.put("id",3);
-        product.put("name","香蕉");
-        list.add(product);
-
-        return  list;
+        List<ProductEntity> list =  mapper.selectList(null);
+        return  R.ok(list);
     }
 
 }
