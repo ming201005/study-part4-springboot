@@ -1,7 +1,9 @@
 package com.codingstudy.login.configuration;
 
 import com.baomidou.mybatisplus.extension.api.R;
+import com.codingstudy.login.components.JwtTokenUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 
 import javax.servlet.ServletException;
@@ -14,6 +16,9 @@ import java.io.PrintWriter;
  * 封装输出JSON格式的类
  */
 public abstract class JSONAuthentication {
+
+    @Autowired
+    JwtTokenUtil jwtTokenUtil;
 
     /**
      * 输出JSON

@@ -24,7 +24,7 @@ public class EntryPointUnauthorizedHandler extends JSONAuthentication  implement
                          HttpServletResponse response,
                          AuthenticationException authException) throws IOException, ServletException {
 
-        R<String> data = R.failed("请登录，并携带正确的认证！");
+        R<String> data = R.failed("请登录，并携带正确的认证["+authException.getMessage()+"]");
         //输出
         this.WriteJSON(request, response, data);
 
