@@ -1,6 +1,5 @@
-package com.codingstudy.login.configuration;
+package com.codingstudy.login.configuration.auth;
 
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.api.R;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -15,7 +14,7 @@ import java.io.IOException;
  * 权限校验处理器
  */
 @Component
-public class RestAccessDeniedHandler extends JSONAuthentication implements AccessDeniedHandler {
+public class MyAccessDeniedHandler extends JSONAuthentication implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request,
                        HttpServletResponse response,

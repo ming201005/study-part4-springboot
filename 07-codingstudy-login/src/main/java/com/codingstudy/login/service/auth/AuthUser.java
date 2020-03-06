@@ -1,4 +1,4 @@
-package com.codingstudy.login.service;
+package com.codingstudy.login.service.auth;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.Collection;
 
 @Component
-public class JwtUser implements UserDetails {
+public class AuthUser implements UserDetails {
 
     private String username;
 
@@ -17,10 +17,10 @@ public class JwtUser implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public JwtUser() {
+    public AuthUser() {
     }
 
-    public JwtUser(String username, String password, Integer state, Collection<? extends GrantedAuthority> authorities) {
+    public AuthUser(String username, String password, Integer state, Collection<? extends GrantedAuthority> authorities) {
         this.username = username;
         this.password = password;
         this.state = state;

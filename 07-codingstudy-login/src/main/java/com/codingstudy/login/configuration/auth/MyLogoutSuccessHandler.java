@@ -1,9 +1,7 @@
-package com.codingstudy.login.configuration;
+package com.codingstudy.login.configuration.auth;
 
 import com.baomidou.mybatisplus.extension.api.R;
-import com.codingstudy.login.service.JwtUser;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Component;
 

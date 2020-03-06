@@ -1,12 +1,9 @@
-package com.codingstudy.login.configuration;
-
-import com.alibaba.fastjson.JSONObject;
+package com.codingstudy.login.configuration.auth;
 
 import com.baomidou.mybatisplus.extension.api.R;
 import com.codingstudy.login.components.JwtTokenUtil;
 import com.codingstudy.login.components.TokenCache;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +11,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -25,7 +21,6 @@ import java.util.Map;
  * 登录成功操作
  */
 @Component
-@Slf4j
 public class MyAuthenticationSuccessHandler extends JSONAuthentication implements AuthenticationSuccessHandler {
 
     @Override
@@ -41,14 +36,14 @@ public class MyAuthenticationSuccessHandler extends JSONAuthentication implement
         //好的解决方案，登录成功后token存储到数据库中
         //只要token还在过期内，不需要每次重新生成
         //先去缓存中找
-        String token = TokenCache.getTokenFromCache();
+        String token = TokenCache.getTokenFromCache(userDetails.getUsername());
         if(token ==null) {
             System.out.println("初次登录，token还没有，生成新token。。。。。。");
             //如果token为空，则去创建一个新的token
             jwtTokenUtil = new JwtTokenUtil();
             token = jwtTokenUtil.generateToken(userDetails);
             //把新的token存储到缓存中
-            TokenCache.setToken(token);
+            TokenCache.setToken(userDetails.getUsername(),token);
         }
 
         Map<String,Object> map = new HashMap<>();

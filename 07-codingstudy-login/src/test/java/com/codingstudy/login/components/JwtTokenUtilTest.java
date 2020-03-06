@@ -1,6 +1,6 @@
 package com.codingstudy.login.components;
 
-import com.codingstudy.login.service.JwtUser;
+import com.codingstudy.login.service.auth.AuthUser;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +16,7 @@ class JwtTokenUtilTest {
     @Test
     void generateToken() {
 
-        UserDetails userDetails = new JwtUser("ming206","123456",1,null);
+        UserDetails userDetails = new AuthUser("ming206","123456",1,null);
 
         String token = jwtTokenUtil.generateToken(userDetails);
 

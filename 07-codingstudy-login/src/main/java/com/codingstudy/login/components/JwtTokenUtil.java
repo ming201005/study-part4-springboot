@@ -1,6 +1,6 @@
 package com.codingstudy.login.components;
 
-import com.codingstudy.login.service.JwtUser;
+import com.codingstudy.login.service.auth.AuthUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -96,7 +96,7 @@ public class JwtTokenUtil {
      * @return 是否有效
      */
     public Boolean validateToken(String token, UserDetails userDetails) throws Exception {
-        JwtUser user = (JwtUser) userDetails;
+        AuthUser user = (AuthUser) userDetails;
         String username = getUsernameFromToken(token);
         return (username.equals(user.getUsername()) && !isTokenExpired(token));
     }

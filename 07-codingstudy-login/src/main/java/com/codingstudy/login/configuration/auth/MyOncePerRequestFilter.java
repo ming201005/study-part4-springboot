@@ -1,4 +1,4 @@
-package com.codingstudy.login.configuration;
+package com.codingstudy.login.configuration.auth;
 
 import com.codingstudy.login.components.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import java.io.IOException;
  * 拦截器
  */
 @Component
-public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
+public class MyOncePerRequestFilter extends OncePerRequestFilter {
 
     @Autowired
     private UserDetailsService userDetailsService;

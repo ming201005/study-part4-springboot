@@ -1,4 +1,4 @@
-package com.codingstudy.login.configuration;
+package com.codingstudy.login.configuration.auth;
 
 import com.baomidou.mybatisplus.extension.api.R;
 import com.codingstudy.login.components.JwtTokenUtil;

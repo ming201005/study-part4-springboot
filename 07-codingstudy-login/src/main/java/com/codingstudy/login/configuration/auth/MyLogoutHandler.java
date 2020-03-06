@@ -1,10 +1,7 @@
-package com.codingstudy.login.configuration;
+package com.codingstudy.login.configuration.auth;
 
-import com.codingstudy.login.components.JwtTokenUtil;
-import com.codingstudy.login.service.JwtUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
