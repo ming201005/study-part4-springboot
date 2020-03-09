@@ -1,6 +1,6 @@
 package com.codingstudy.login.dao;
 
-import com.codingstudy.login.entity.UserEntity;
+import com.codingstudy.login.entity.SysUserEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,11 +12,11 @@ import java.util.List;
 class UserMapperTest {
 
     @Autowired
-    UserMapper mapper;
+    SysUserMapper mapper;
 
     @Test
     void test01() {
-       List<UserEntity> list =  mapper.selectList(null);
+       List<SysUserEntity> list =  mapper.selectList(null);
         System.out.println(list);
     }
 }

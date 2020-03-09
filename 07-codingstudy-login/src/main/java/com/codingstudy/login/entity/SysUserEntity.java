@@ -8,27 +8,24 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.util.List;
 
 
-@TableName("user_table")
-public class UserEntity {
+@TableName("sys_user_table")
+public class SysUserEntity {
 
-    @TableId(value = "user_id", type = IdType.UUID)
+    @TableId(type = IdType.UUID)
     String userId;
 
     String userName;
 
     String passWord;
 
-    private Integer state;
+    Integer state;
 
     String description;
 
-    @TableField(exist = false)
-    List<RoleEntity> roles;
-
-    public UserEntity() {
+    public SysUserEntity() {
     }
 
-    public UserEntity(String userId, String userName, String passWord, Integer state, String description) {
+    public SysUserEntity(String userId, String userName, String passWord, Integer state, String description) {
         this.userId = userId;
         this.userName = userName;
         this.passWord = passWord;
@@ -76,14 +73,6 @@ public class UserEntity {
         this.state = state;
     }
 
-    public List<RoleEntity> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<RoleEntity> roles) {
-        this.roles = roles;
-    }
-
     @Override
     public String toString() {
         return "UserEntity{" +
@@ -92,7 +81,6 @@ public class UserEntity {
                 ", passWord='" + passWord + '\'' +
                 ", state=" + state +
                 ", description='" + description + '\'' +
-                ", roles" + roles +
                 '}';
     }
 }

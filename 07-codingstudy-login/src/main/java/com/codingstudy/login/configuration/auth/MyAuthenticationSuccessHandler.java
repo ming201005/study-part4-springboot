@@ -3,7 +3,10 @@ package com.codingstudy.login.configuration.auth;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.codingstudy.login.components.JwtTokenUtil;
 import com.codingstudy.login.components.TokenCache;
+import com.codingstudy.login.entity.SysFrontendMenuTable;
+import com.codingstudy.login.service.SysFrontendMenuTableService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +26,9 @@ import java.util.Map;
  */
 @Component
 public class MyAuthenticationSuccessHandler extends JSONAuthentication implements AuthenticationSuccessHandler {
+
+    @Autowired
+    SysFrontendMenuTableService service;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
@@ -46,9 +53,13 @@ public class MyAuthenticationSuccessHandler extends JSONAuthentication implement
             TokenCache.setToken(userDetails.getUsername(),token);
         }
 
+        //加载前端菜单
+        List<SysFrontendMenuTable> menus = service.getMenusByUserName(userDetails.getUsername());
+        //
         Map<String,Object> map = new HashMap<>();
         map.put("username",userDetails.getUsername());
         map.put("auth",userDetails.getAuthorities());
+        map.put("menus",menus);
         map.put("token",token);
         //装入token
         R<Map<String,Object>> data = R.ok(map);

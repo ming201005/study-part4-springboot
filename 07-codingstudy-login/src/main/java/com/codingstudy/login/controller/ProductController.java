@@ -1,5 +1,6 @@
 package com.codingstudy.login.controller;
 
+import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.codingstudy.login.dao.ProductMapper;
 import com.codingstudy.login.entity.ProductEntity;
@@ -11,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("product")
 @CrossOrigin
-public class ProductController {
+public class ProductController extends ApiController  {
 
     @Autowired
     ProductMapper mapper;
@@ -22,11 +23,11 @@ public class ProductController {
      * @return
      */
     @PostMapping
-    public R<ProductEntity> add(@RequestBody ProductEntity productEntity) {
+    public R add(@RequestBody ProductEntity productEntity) {
         //here....
         System.out.println("productEntity = " + productEntity);
         int rs = mapper.insert(productEntity);
-        return  R.ok(productEntity);
+        return  success(productEntity);
     }
 
     /**
@@ -34,10 +35,10 @@ public class ProductController {
      * @return
      */
     @GetMapping
-    public R<List<ProductEntity>> getProduct() {
+    public R getList() {
 
         List<ProductEntity> list =  mapper.selectList(null);
-        return  R.ok(list);
+        return  success(list);
     }
 
 }

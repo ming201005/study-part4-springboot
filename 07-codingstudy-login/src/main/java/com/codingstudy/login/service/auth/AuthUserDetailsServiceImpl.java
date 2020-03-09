@@ -1,8 +1,9 @@
 package com.codingstudy.login.service.auth;
 
-import com.codingstudy.login.entity.RoleEntity;
-import com.codingstudy.login.entity.UserEntity;
-import com.codingstudy.login.service.IUserService;
+import com.codingstudy.login.entity.SysRoleTable;
+import com.codingstudy.login.entity.SysUserEntity;
+import com.codingstudy.login.service.SysRoleTableService;
+import com.codingstudy.login.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,23 +23,30 @@ import java.util.stream.Collectors;
 public class AuthUserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private IUserService userService;
+    private SysUserService userService;
 
+    @Autowired
+    private SysRoleTableService roleService;
+
+    /**
+     * 通过账号查找用户、角色的信息
+     * @param username
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity user = userService.getUserByUserName(username);
+        SysUserEntity user = userService.getUserByUserName(username);
         if (user == null) {
             throw new UsernameNotFoundException(String.format("%s.这个用户不存在", username));
         }else {
-            //人为的填充一些数据
-            List<RoleEntity> roles = new ArrayList<>();
-            roles.add(new RoleEntity("01","ADMIN"));
-            roles.add(new RoleEntity("02","USER"));
-            user.setRoles(roles);
-
-            List<SimpleGrantedAuthority> authorities = user.getRoles().stream().map(RoleEntity::getRoleName).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
-
-            System.out.println("here ....................user = " + user);
+            //查找角色
+            List<String> roles =  roleService.getRolesByUserName(username);
+            List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+            for (String role : roles) {
+                authorities.add(new SimpleGrantedAuthority(role));
+            }
+            System.out.println("loadUserByUsername......user ===> " + user);
             return new AuthUser(user.getUserName(), user.getPassWord(), user.getState(), authorities);
         }
     }

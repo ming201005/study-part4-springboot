@@ -1,6 +1,9 @@
 package com.codingstudy.login.configuration.auth;
 
+import com.codingstudy.login.components.BCryptPasswordEncoderUtil;
+import com.codingstudy.login.components.DynamicPermission;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -13,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.cors.CorsUtils;
 
 /**
@@ -20,8 +24,11 @@ import org.springframework.web.cors.CorsUtils;
  */
 @Configuration
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
+
     @Autowired
+    @Qualifier("authUserDetailsServiceImpl")
     private UserDetailsService userDetailsService;
+
     @Autowired
     private MyOncePerRequestFilter myOncePerRequestFilter;
     @Autowired
@@ -41,6 +48,12 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyLogoutSuccessHandler myLogoutSuccessHandler;
 
+    @Autowired
+    BCryptPasswordEncoderUtil bCryptPasswordEncoderUtil;
+
+    @Autowired
+    DynamicPermission  dynamicPermission;
+
     /**
      * 从容器中取出 AuthenticationManagerBuilder，执行方法里面的逻辑之后，放回容器
      *
@@ -49,11 +62,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
      */
     @Autowired
     public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
-
-    private PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoderUtil);
     }
 
     @Override
@@ -68,8 +77,11 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
         //第3步：请求权限配置
         //放行注册API请求，其它任何请求都必须经过身份验证.
-        http.authorizeRequests().antMatchers("/register").permitAll()
-                .and().authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.POST,"/user/register").permitAll()
+                //动态加载资源
+                .anyRequest().access("@dynamicPermission.checkPermisstion(request,authentication)");
+                //.and().authorizeRequests().anyRequest().authenticated();
 
         //第4步：拦截账号、密码。覆盖 UsernamePasswordAuthenticationFilter过滤器
         http.addFilterAt(myUsernamePasswordAuthenticationFilter() , UsernamePasswordAuthenticationFilter.class);
