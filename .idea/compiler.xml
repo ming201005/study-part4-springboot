@@ -6,18 +6,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="05-jpa-test" />
         <module name="mybatisxml" />
-        <module name="03-mybatis-@" />
         <module name="00-codingstudy-ajax" />
-        <module name="jpatest" />
-        <module name="04-mybatis-plus" />
-        <module name="02-mybatisxml" />
         <module name="springbootMVC" />
         <module name="01-spring-boot-MVC" />
-        <module name="mybatis03" />
         <module name="mybatisplus" />
+        <module name="jpatest" />
+        <module name="02-mybatisxml" />
+        <module name="07-codingstudy-login" />
+        <module name="Aop" />
+        <module name="mybatis03" />
+        <module name="04-mybatis-plus" />
         <module name="00-01-codingstudy-aop" />
-        <module name="05-jpa-test" />
+        <module name="03-mybatis-@" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -32,6 +34,8 @@
       <module name="04-mybatis-plus" target="1.8" />
       <module name="05-jpa-test" target="1.8" />
       <module name="06-codingstudy-Aop" target="13" />
+      <module name="07-codingstudy-login" target="1.8" />
+      <module name="Aop" target="13" />
       <module name="jpatest" target="1.8" />
       <module name="mybatis03" target="1.8" />
       <module name="mybatisplus" target="1.8" />
@@ -52,6 +56,8 @@
       <module name="04-mybatis-plus" options="-parameters" />
       <module name="05-jpa-test" options="-parameters" />
       <module name="06-codingstudy-Aop" options="-parameters" />
+      <module name="07-codingstudy-login" options="-parameters" />
+      <module name="Aop" options="-parameters" />
       <module name="jpatest" options="-parameters" />
       <module name="mybatis03" options="-parameters" />
       <module name="mybatisplus" options="-parameters" />

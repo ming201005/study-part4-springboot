@@ -1,13 +1,13 @@
-package com.codingstudy.sop;
+package com.codingstudy.aop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SopApplication {
+public class AopApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SopApplication.class, args);
+        SpringApplication.run(AopApplication.class, args);
     }
 
 }

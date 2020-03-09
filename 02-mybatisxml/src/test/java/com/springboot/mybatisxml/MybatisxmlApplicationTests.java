@@ -1,7 +1,5 @@
 package com.springboot.mybatisxml;
 
-import com.github.pagehelper.IPage;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.springboot.mybatisxml.model.Student;

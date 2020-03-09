@@ -3,9 +3,7 @@ package com.codingstudy.aop.cglib;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
-import org.aspectj.lang.reflect.MethodSignature;
-import org.aspectj.weaver.patterns.ArgsAnnotationPointcut;
-import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
+
 
 import java.lang.reflect.Method;
 

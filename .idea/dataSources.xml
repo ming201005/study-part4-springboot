@@ -63,5 +63,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/00.codingstudy-ajax?serverTimezone=UTC</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="07-codingstudy_login" uuid="ec0c9a31-58c7-4b52-bf45-32820c2af589">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/07-codingstudy_login?serverTimezone=UTC</jdbc-url>
+    </data-source>
   </component>
 </project>
