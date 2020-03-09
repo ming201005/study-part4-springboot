@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>系统管理中心</title>
+    <meta charset="UTF-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/axios.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/checkIsLogin.js"></script>
+    <style>
+        #app{
+            display: flex;
+            flex-direction: column;
+            font-size: 13px;
+        }
+        .top {
+            display: flex;
+            justify-content: space-between;
+            height:60px;
+            background-image: linear-gradient(to right,  #FFFFFF,  #4078C3);
+            /*background-color: #4078C3;*/
+        }
+        /*logo信息*/
+        .top .logo {
+            height: 40px;
+            line-height: 40px;
+            margin: 10px 50px;
+            background-image: url("css/img/logo.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        /*公司信息*/
+        .top .company {
+            margin-left: 150px;
+            line-height: 40px;
+            font-size: 23px;
+            font-weight: bold;
+            font-family: 黑体;
+        }
+        /*用户信息*/
+        .top .user_infos{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-right: 30px;
+            height: 60px;
+            line-height: 60px;
+            color: #FFFFFF;
+            font-size: 14px;
+            text-align: right;
+        }
+        .top .user_infos a{
+            margin-left: 20px;
+            width: 60px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            background-image: linear-gradient(to right,  #CBCBCB,#BBCFEA);
+            border-radius: 3px;
+            color: #000000;
+            text-decoration: none;
+        }
+        .top .user_infos a:hover{
+            background-image: linear-gradient(to right,  #BBCFEA,#FFFFFF);
+        }
+
+        .box {
+            display: flex;
+            background-color: #FFFFFF;
+        }
+        .box .left {
+            width: 230px;
+            padding: 0px;
+            background-color: #BBCFEA
+        }
+        .nav-item {
+            width: 100%;
+            padding: 0px;
+            border-radius: 8px;
+        }
+        .nav-item .category {
+            width: 100%;
+            color: #2e3133;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 3px 0 3px 10px;
+            background-color:rgba(64, 120, 195, 0.3);
+        }
+        .nav-item ul{
+            margin: 0;
+            padding: 0;
+            background-color: #E5E4E9;
+        }
+        .nav-item ul li {
+            list-style: none;
+            padding: 3px 0 3px 30px;
+            border: #CBCBCB dotted 1px;
+            border-width: 0px 0 1px 0px;
+            cursor: pointer;
+         }
+        .nav-item ul li a {
+            text-decoration: none;
+        }
+        .nav-item li:hover {
+            background-image: linear-gradient(to right,  #E5E4E9,#FFFFFF);
+        }
+        .a-hover{
+            background-color: #f9f9f9;
+        }
+
+        .box .right {
+            width: 100%;
+            padding: 5px 20px 0px 20px;
+            background-color: #f9f9f9;
+        }
+        .box .right .right_nav {
+            background-image: url("css/img/home.jpg");
+            background-repeat: no-repeat;
+            background-size: contain;
+            font-weight: bold;
+            margin-left: 8px;
+            padding-left: 30px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--顶部-->
+    <div class="top">
+        <div class="logo">
+            <div class="company">宜简社区连锁便利店管理后台系统</div>
+        </div>
+        <div class="user_infos">
+            <div>您好，{{username}}！您的角色：{{auth}}</div>   <a  href="javascript:;" @click="logout"> 退出 </a>
+        </div>
+    </div>
+
+    <div class="box" :style="{height:boxHeight+'px'}">
+        <!--左边菜单-->
+        <div class="left">
+            <h6 style="margin: 15px">系统导航</h6>
+
+            <div class="nav-item" v-if="item.pid==null" v-for="item in menuList">
+                <div class="category">{{item.frontendMenuName}}</div>
+                <ul>
+                    <li :class="currentPage.id==menuItem.frontendMenuId?'a-hover':''" v-if="menuItem.pid==item.frontendMenuId"
+                        v-for="menuItem in menuList">
+                        <a :href="menuItem.frontendMenuUrl" target="rightBox"
+                           @click="setCurrentPage(menuItem)">{{menuItem.frontendMenuName}}</a>
+                    </li>
+                </ul>
+            </div>
+
+<!--            <div class="nav-item">-->
+<!--                <div class="category">订单管理</div>-->
+<!--                <ul>-->
+<!--                    <li class="a-hover"><a href="product.html" target="rightBox" >订单查询</a></li>-->
+<!--                    <li><a href="product.html" target="rightBox" >未处理订单</a></li>-->
+<!--                    <li><a href="product.html" target="rightBox" >已处理订单</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+
+<!--            <div class="nav-item">-->
+<!--                <div class="category">资源管理</div>-->
+<!--                <ul>-->
+<!--                    <li class="a-hover"><a href="product.html" target="rightBox" >商品图片查询</a></li>-->
+<!--                    <li><a href="product.html" target="rightBox" >商品图片上传</a></li>-->
+<!--                    <li><a href="product.html" target="rightBox" >商品视频查询</a></li>-->
+<!--                    <li><a href="product.html" target="rightBox" >商品视频上传</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+
+<!--            <div class="nav-item">-->
+<!--                <div class="category">营销管理</div>-->
+<!--                <ul>-->
+<!--                    <li><a href="product.html" target="rightBox" >…………</a></li>-->
+<!--                    <li><a href="product.html" target="rightBox" >…………</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+
+<!--            <div class="nav-item">-->
+<!--                <div class="category">运营分析</div>-->
+<!--                <ul>-->
+<!--                    <li><a href="product.html" target="rightBox" >客户分析</a></li>-->
+<!--                    <li><a href="product.html" target="rightBox" >销售分析</a></li>-->
+<!--                    <li><a href="product.html" target="rightBox" >订单分析</a></li>-->
+<!--                    <li><a href="product.html" target="rightBox" >配送分析</a></li>-->
+<!--                    <li><a href="product.html" target="rightBox" >…………</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+
+<!--            <div class="nav-item">-->
+<!--                <div class="category">系统管理</div>-->
+<!--                <ul>-->
+<!--                    <li><a href="user.html" target="rightBox" >用户管理</a></li>-->
+<!--                    <li><a href="product.html" target="rightBox" >角色管理</a></li>-->
+<!--                    <li><a href="product.html" target="rightBox" >后端API管理</a></li>-->
+<!--                    <li><a href="menu.html" target="rightBox" >前端菜单管理</a></li>-->
+<!--                    <li><a href="product.html" target="rightBox" >用户角色分配</a></li>-->
+<!--                    <li><a href="product.html" target="rightBox" >用户后端API分配</a></li>-->
+<!--                    <li><a href="product.html" target="rightBox" >用户前端菜单分配</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+
+        </div>
+        <!--内容-->
+        <div class="right">
+            <div class="right_nav">{{currentPage.name}}</div>
+            <iframe id="rightBox" name="rightBox" :src="currentPage.path" width="100%" frameborder="0" scrolling="true" :style="{height: (boxHeight-30)+'px'}"></iframe>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    let vue = new Vue({
+        el:"#app",
+        data:{
+            currentPage:{
+                id:null,
+                name:'商品查询',
+                path:'product.html'
+            },
+            boxHeight:0,
+            username :global_username,
+            auth     :global_authArr,
+            menuList :[]
+        },
+        created(){
+            this.getBoxHeight();
+            this.menuList = Auth.getMenus();
+        },
+        methods: {
+            getBoxHeight() {
+                let clientHeight =  document.documentElement.clientHeight;
+                this.boxHeight = clientHeight-60;
+            },
+            logout() {
+                let url = "http://localhost:8083/logout";
+                axios.get(url).then(rs=>{
+                    if(rs.data.code ==0 ) {
+                        Auth.deleteAuth();
+                        document.location.reload();
+                    }
+                }).catch(err=>{
+                    alert(err)
+                });
+            },
+
+
+            /**
+             * 设置当前页信息
+             * @param item
+             */
+            setCurrentPage(item){
+                this.currentPage.id = item.frontendMenuId;
+                this.currentPage.name = item.frontendMenuName;
+                this.currentPage.path = item.frontendMenuUrl;
+            }
+        }
+    });
+</script>
+</body>
+</html>

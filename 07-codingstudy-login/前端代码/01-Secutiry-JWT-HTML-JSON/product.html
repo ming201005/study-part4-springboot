@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品管理</title>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/checkIsLogin.js"></script>
+    <link rel="stylesheet" href="css/template.css">
+
+</head>
+<body>
+<div id="app">
+
+    <div class="model_box">
+
+        <div class="item" v-if="model.productId != null">
+            <label for="productId">商品编号：</label>
+            <input id="productId" v-model="model.productId" disabled>
+        </div>
+
+        <div class="item">
+            <label for="productName">商品名称：</label>
+            <input id="productName" v-model="model.productName">
+        </div>
+
+        <div class="item">
+            <label for="num">库存量：</label>
+            <input id="num" v-model="model.num">
+        </div>
+
+        <div class="item">
+            <label for="price">市场价：</label>
+            <input id="price" v-model="model.price">
+        </div>
+        <div class="button_group">
+            <button @click="add" >保存</button>
+            <button >取消</button>
+        </div>
+    </div>
+
+    <div class="model_list">
+        <div class="button_group"
+             style="justify-content:left;border: 1px solid #A8A8A8; border-bottom: 0px; width: 99.8%;">
+            <button @click="addNew" >新建</button>
+            <button >删除</button>
+        </div>
+        <table width="100%" border="0" cellspacing="1" cellpadding="0">
+            <tr class="h">
+                <td>商品编号</td>
+                <td>商品名称</td>
+                <td>库存量</td>
+                <td>市场价</td>
+                <td>操 作</td>
+            </tr>
+
+            <tr v-for="item in modelList">
+                <td>{{item.productId}}</td>
+                <td>{{item.productName}}</td>
+                <td>{{item.num}}</td>
+                <td>{{item.price}}</td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<script>
+
+    let vue = new Vue({
+        el: "#app",
+        data: {
+            url : "http://localhost:8083/product",
+            //商品对象
+            model:{
+                productId:null,
+                productName:null,
+                num:0,
+                price:0.00
+            },
+            //商品列表
+            modelList:[]
+        },
+        created() {
+            this.getModelList();
+        },
+        methods: {
+            //查询列表
+            getModelList() {
+                axios.get(this.url).then(rs => {
+                    if(rs.data.code == 0) {
+                        this.modelList = rs.data.data;
+                        console.log(this.modelList);
+                    }else{
+                        console.log(rs.data.msg);
+                    }
+                }).catch(err => {
+                    console.log("错误信息==》",err);
+                });
+            },
+
+            addNew(){
+                this.model = {};
+            },
+
+            //新增数据
+            add() {
+                console.log("here  add...............")
+                axios.post(this.url, this.model).then( rs => {
+                    if(rs.data.code == 0) {
+                        this.model = rs.data.data;
+                        this.modelList.unshift(this.model);
+                    }
+                }).catch(err => {
+                    console.log(err);
+                });
+            }
+
+        }
+    });
+
+</script>
+</body>
+</html>

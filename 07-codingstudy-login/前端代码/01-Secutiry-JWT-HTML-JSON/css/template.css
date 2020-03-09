@@ -1,0 +1,58 @@
+body{
+    font-size: 13px;
+}
+#app{
+    width: 100%;
+    margin: auto;
+}
+.model_box{
+    display: flex;
+    flex-flow: wrap;
+    border: 1px solid #A8A8A8;
+    background-color: #FFFFFF;
+}
+.item {
+    width: 100%;
+    margin: 10px 0 0 0 ;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #A8A8A8;
+}
+.item label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+}
+.button_group {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    background-color: #F2F2F2;
+}
+.button_group button{
+    margin: 5px;
+}
+.model_list{
+    margin-top: 20px;
+}
+.model_list table {
+    background:#A8A8A8;
+}
+.model_list table tr {
+    background:#FFFFFF;
+    color:#000;
+}
+/*斑马效果*/
+.model_list table tr:nth-child(even){
+    background-color:#F0F0F0;
+}
+/*头部*/
+.model_list table .h {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+/*列空隙*/
+.model_list table tr td {
+    padding: 5px;
+}

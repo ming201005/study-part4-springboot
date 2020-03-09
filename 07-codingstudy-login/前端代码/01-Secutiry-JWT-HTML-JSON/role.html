@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色</title>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/checkIsLogin.js"></script>
+    <link rel="stylesheet" href="css/template.css">
+</head>
+<body>
+<div id="app">
+
+    <div class="model_box">
+
+        <div class="item">
+            <label for="roleName">角色名称：</label>
+            <input id="roleName" v-model="model.roleName">
+            <span>新建时，自动加前缀“ROLE_”</span>
+        </div>
+
+        <div class="item">
+            <label for="description">说明：</label>
+            <input id="description" v-model="model.description">
+        </div>
+        <div class="button_group">
+            <button @click="save" >保存</button>
+            <button >取消</button>
+        </div>
+    </div>
+
+    <div class="model_list">
+        <div class="button_group"
+             style="justify-content:left;border: 1px solid #A8A8A8; border-bottom: 0px; width: 99.8%;">
+            <button @click="addNew" >新建</button>
+            <button >删除</button>
+        </div>
+        <table width="100%" border="0" cellspacing="1" cellpadding="0">
+            <tr class="h">
+                <td>编码</td>
+                <td>角色名称</td>
+                <td>描述</td>
+                <td>操作</td>
+            </tr>
+
+            <tr v-for="item in modelList">
+                <td>{{item.roleId}}</td>
+                <td>{{item.roleName}}</td>
+                <td>{{item.description}}</td>
+                <td>
+                    <button @click="editModel(item)" >编辑</button>
+                    <button @click="del(item.roleId)" >删除</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<script>
+
+    let vue = new Vue({
+        el: "#app",
+        data: {
+            url : "http://localhost:8083/sysRoleTable",
+            //对象
+            model:{
+                roleId:null,
+                roleName:null,
+                description:null
+            },
+            //列表
+            modelList:[]
+        },
+        created() {
+            this.getModelList();
+        },
+        methods: {
+            //查询列表
+            getModelList() {
+                axios.get(this.url+"?size=100").then(rs => {
+                    if(rs.data.code == 0) {
+                        console.log(rs.data.data);
+                        //注意后台调用的是分页的API
+                        this.modelList = rs.data.data.records;
+                    }else{
+                        alert(rs.data.msg);
+                    }
+                }).catch(err => {
+                    console.log("错误信息==》",err);
+                });
+            },
+
+            /**
+             * 准备新增
+             */
+            addNew(){
+                this.model = {};
+            },
+
+            /**
+             * 准备编辑的数据
+             */
+            editModel(item){
+                this.model = item;
+            },
+
+
+            /**
+             * 保存数据，包括新增、和编辑
+             */
+            save(){
+                if(this.model.roleId ==null){
+                    this._add();
+                }else{
+                    this._edit();
+                }
+            },
+
+            /**
+             * 新增
+             */
+            _add() {
+                console.log("here  add...............")
+
+                axios.post(this.url, this.model).then( rs => {
+                    if(rs.data.code == 0) {
+                        this.model = rs.data.data;
+                        this.getModelList();
+                    }
+                }).catch(err => {
+                    console.log(err);
+                });
+            },
+
+            /**
+             * 编辑
+             * @param item
+             */
+            _edit() {
+                console.log("here  edit...............")
+                axios.put(this.url, this.model).then( rs => {
+                    if(rs.data.code == 0) {
+
+                        this.getModelList();
+                    }
+                }).catch(err => {
+                    console.log(err);
+                });
+            },
+
+            /**
+             * 删除,如果要做批量删除。请传多个frontendMenuId，或者
+             * 传“,”分开的id，例如：id=1,2,3,5,6。后端接收参数idList
+             * @param roleId
+             */
+            del(roleId) {
+                if(confirm('一旦删除，不可恢复，请确认。')){
+                    let url = this.url + "?idList="+roleId;
+                    axios.delete(url).then( rs => {
+                        if(rs.data.code == 0) {
+                            this.getModelList();
+                        }
+                    }).catch(err => {
+                        console.log(err);
+                    });
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

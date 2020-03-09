@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>api管理</title>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/checkIsLogin.js"></script>
+    <link rel="stylesheet" href="css/template.css">
+</head>
+<body>
+<div id="app">
+
+    <div class="model_box">
+
+        <div class="item">
+            <label for="parentName">父级菜单：</label>
+            <input id="parentName" v-model="model.parentName" disabled>
+        </div>
+
+        <div class="item">
+            <label for="backendApiName">API中文名：</label>
+            <input id="backendApiName" v-model="model.backendApiName">
+        </div>
+
+        <div class="item">
+            <label for="backendApiUrl">请求地址：</label>
+            <input   id="backendApiUrl" v-model="model.backendApiUrl">
+            <span>请按AntPathMatcher支持的匹配规则填写</span>
+        </div>
+
+        <div class="item">
+            <label for="backendApiSort">排序：</label>
+            <input type="number" id="backendApiSort" v-model="model.backendApiSort">
+            <span>务必填写，建议：分类一：100、101、102；分类二：200、201；以此类推</span>
+        </div>
+        <div class="item">
+            <label for="description">说明：</label>
+            <input id="description" v-model="model.description">
+        </div>
+        <div class="button_group">
+            <button @click="save" >保存</button>
+            <button >取消</button>
+        </div>
+    </div>
+
+    <div class="model_list">
+        <div class="button_group"
+             style="justify-content:left;border: 1px solid #A8A8A8; border-bottom: 0px; width: 99.8%;">
+            <button @click="addNew" >新建</button>
+            <button >删除</button>
+        </div>
+        <table width="100%" border="0" cellspacing="1" cellpadding="0">
+            <tr class="h">
+                <td>父级</td>
+                <td>API名称</td>
+                <td>请求地址</td>
+                <td>排序</td>
+                <td>说明</td>
+                <td>操作</td>
+            </tr>
+
+            <tr v-for="item in modelList" :style="(item.pid==null && item.backendApiId !=1)?  {backgroundColor:'#A8A8A8'}:{}">
+                <td>{{item.parentName}}</td>
+                <td>{{item.pid==null? "+"+item.backendApiName:"—"+item.backendApiName}}</td>
+                <td>{{item.backendApiUrl}}</td>
+                <td>{{item.backendApiSort}}</td>
+                <td>{{item.description}}</td>
+                <td>
+                    <button @click="editModel(item)">编辑</button>
+                    <button @click="del(item.backendApiId)">删除</button>
+                    <button @click="addChild(item)" v-if="item.pid==null">添加子菜单</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<script>
+
+    let vue = new Vue({
+        el: "#app",
+        data: {
+            url : "http://localhost:8083/sysBackendApiTable",
+            //对象
+            model:{
+                backendApiId:null,
+                backendApiName:null,
+                backendApiUrl:null,
+                parentName:null,
+                pid:null,
+                backendApiSort:null,
+                description:null
+            },
+            //列表
+            modelList:[]
+        },
+        created() {
+            this.getModelList();
+        },
+        methods: {
+            //查询列表
+            getModelList() {
+                axios.get(this.url).then(rs => {
+                    if(rs.data.code == 0) {
+                        console.log("菜单管理==》",rs.data.data);
+                        this.modelList = rs.data.data;
+                    }else{
+                        alert(rs.data.msg);
+                    }
+                }).catch(err => {
+                    console.log("错误信息==》",err);
+                });
+            },
+
+            /**
+             * 准备新增
+             */
+            addNew(){
+                this.model = {};
+            },
+
+            /**
+             * 准备编辑的数据
+             */
+            editModel(item){
+                this.model = item;
+                console.log(this.model);
+            },
+
+            /**
+             * 想显示父节点名称的话，后端查询要自身表关联。
+             */
+            addChild(item) {
+                //把当前的ID赋给子节点的pid
+                this.model = {};
+                this.model.pid = item.backendApiId;
+                //把当前的名赋给子节点父级名
+                this.model.parentName = item.backendApiName;
+            },
+
+            /**
+             * 保存数据，包括新增、和编辑
+             */
+            save(){
+              if(this.model.backendApiId ==null){
+                  this._add();
+              }else{
+                  this._edit();
+              }
+            },
+
+            /**
+             * 新增
+             */
+            _add() {
+                console.log("here  add...............")
+
+                axios.post(this.url, this.model).then( rs => {
+                    if(rs.data.code == 0) {
+                        //this.model = rs.data.data;
+                        this.getModelList();
+                    }
+                }).catch(err => {
+                    console.log(err);
+                });
+            },
+
+            /**
+             * 编辑
+             * @param item
+             */
+            _edit() {
+                console.log("here  edit...............")
+                axios.put(this.url, this.model).then( rs => {
+                    if(rs.data.code == 0) {
+                        //this.model = rs.data.data;
+                        this.getModelList();
+                    }
+                }).catch(err => {
+                    console.log(err);
+                });
+            },
+
+            /**
+             * 删除,如果要做批量删除。请传多个frontendMenuId，或者
+             * 传“,”分开的id，例如：id=1,2,3,5,6。后端接收参数idList
+             * @param backendApiId
+             */
+            del(backendApiId) {
+                if(confirm('一旦删除，不可恢复，请确认。')){
+                    let url = this.url + "?idList="+backendApiId;
+                    axios.delete(url).then( rs => {
+                        if(rs.data.code == 0) {
+                            this.getModelList();
+                        }
+                    }).catch(err => {
+                        console.log(err);
+                    });
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

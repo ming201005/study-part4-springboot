@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色-用户分配</title>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/checkIsLogin.js"></script>
+    <link rel="stylesheet" href="css/template.css">
+    <style>
+        .role {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .role .left {
+            width: 40%;
+            height: 800px;
+            padding: 2px;
+            background-color: #e2e6ea;
+        }
+
+        .role .rigth {
+            width: 58%;
+        }
+        table tr td {
+            text-align: center;
+        }
+        .selectRow {
+            background-color: #80bdff;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="role">
+        <div class="model_list left">
+            <table width="100%" border="0" cellspacing="1" cellpadding="0">
+                <tr class="h">
+                    <td>角色名称</td>
+                    <td>描述</td>
+                    <td>分配用户</td>
+                </tr>
+
+                <tr :style="actionId ==item.roleId ? {backgroundColor: '#d4edda'}:{}" v-for="item in modelList">
+                    <td>{{item.roleName}}</td>
+                    <td>{{item.description}}</td>
+                    <td>
+                        <button @click="showRole(item)">查看分配</button>
+                    </td>
+                </tr>
+            </table>
+            <span>功能扩展：可以设置“组织机构”，角色中可以放人、组织机构、子角色</span>
+        </div>
+
+        <div class="model_list rigth" v-if="model.roleId !=null">
+            <div style="margin-bottom: 10px;padding: 10px; background-color: #ffc107;">
+                选择正在给【{{model.roleName}}（{{model.description}}）】角色分配账号
+            </div>
+            <div style="margin-bottom: 10px;">
+                <button @click="save">保存配置</button>
+
+            </div>
+            <table width="100%" border="0" cellspacing="1" cellpadding="0">
+                <tr class="h">
+                    <td>选择</td>
+                    <td>用户名</td>
+                    <td>设置情况</td>
+                </tr>
+
+                <tr v-for="item in permissionList" :style="actionId == item.roleId ? {backgroundColor: '#d4edda'}:{}" >
+                    <td><input ref="ids" :value="item.id" type="checkbox" :checked="actionId == item.roleId ?true:false"></td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.roleId !=null? '已设置':''}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+
+    let vue = new Vue({
+        el: "#app",
+        data: {
+            actionId:null,
+            //对象
+            model: {
+                roleId: null,
+                roleName: null,
+                description: null
+            },
+            //角色列表
+            modelList: [],
+            //资源列表
+            permissionList: []
+        },
+        created() {
+            this.getModelList();
+
+        },
+        methods: {
+            //查询列表
+            getModelList() {
+                let url = "http://localhost:8083/sysRoleTable";
+                axios.get(url + "?size=100").then(rs => {
+                    if (rs.data.code == 0) {
+                        console.log(rs.data.data);
+                        //注意后台调用的是分页的API
+                        this.modelList = rs.data.data.records;
+                    } else {
+                        alert(rs.data.msg);
+                    }
+                }).catch(err => {
+                    console.log("错误信息==》", err);
+                });
+            },
+
+            //查询列表
+            getPermissionListList(roleId) {
+                this.userList = [];
+                let url = "http://localhost:8083/sysRoleTable/roleUser/"+roleId;
+                axios.get(url).then(rs => {
+                    if (rs.data.code == 0) {
+                        this.permissionList = rs.data.data;
+                        console.log(this.permissionList);
+                    } else {
+                        alert(rs.data.msg);
+                    }
+                }).catch(err => {
+                    console.log("错误信息==》", err);
+                });
+            },
+
+            showRole(item) {
+                this.model = item;
+                this.actionId = item.roleId;
+                this.getPermissionListList(this.actionId);
+            },
+
+
+            /**
+             * 保存配置数据
+             */
+            save() {
+                //console.log(this.checkboxArr);
+                let ids = this.$refs.ids;
+                let roleAndPermissionList = [];
+                ids.forEach(item=>{
+                    if(item.checked){
+                        let rolePermission = {
+                            id : item.value,
+                            roleId:this.actionId
+                        }
+                        roleAndPermissionList.push(rolePermission);
+                    }
+                });
+                console.log(roleAndPermissionList);
+                //批量提交
+                let url = "http://localhost:8083/sysRoleTable/roleUser/set?roleId="+this.actionId;
+                axios.post(url, roleAndPermissionList).then(rs => {
+                    if (rs.data.code == 0) {
+                        //this.model = rs.data.data;
+                        this.getPermissionListList(this.actionId);
+                    }
+                }).catch(err => {
+                    console.log(err);
+                });
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

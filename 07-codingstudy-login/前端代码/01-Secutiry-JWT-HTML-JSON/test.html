@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+
+<script>
+    //第一步：创建XMLHttpRequest对象
+    let xmlhttp = new XMLHttpRequest();
+    //第二步：调用open方法 请求
+    xmlhttp.open("get","http://localhost:8083/product");
+    //第三步：响应处理
+    xmlhttp.onreadystatechange = function () {
+
+        console.log(xmlhttp.responseText);
+
+        // if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        //     //获得服务器的数据，并将数据转换
+        //     let rs = JSON.parse(xmlhttp.responseText);
+        //
+        //     console.log("rs====>",rs);
+        //
+        // } else {
+        //     //..........
+        // }
+    }
+    //............
+    //............xmlhttp.setRequestHeader......
+    //............
+    //第四步：调用send方法，get时，send不带参数
+    xmlhttp.send();
+</script>
+</body>
+</html>

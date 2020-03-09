@@ -1,0 +1,42 @@
+/*设置背景*/
+body {
+  background-image: url("img/2.jpg");
+  background-repeat: no-repeat;
+  background-size:100%;
+}
+/*设置登录框*/
+.form-signin {
+  max-width: 420px;
+  padding: 20px 30px;
+  margin: 320px auto;
+  background-color: #9fcdff;
+  background-color:rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
