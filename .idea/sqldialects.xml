@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/1-DB-表结构.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/2-DB-用户表数据-sys_user_table.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/3-DB-角色表数据-sys_role_table.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/4-DB-角色-用户分配表-sys_role_user_table.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/5-DB-前端菜单表-sys_frontend_menu_table.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/6-DB-角色-前端菜单分配表-sys_role_frontend_menu_table.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/根据用户查询角色.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/根据角色查找API资源鉴权.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/登录成功-根据账号找API资源鉴权.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/登录成功-根据账号查询前端菜单.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/系统管理-前端菜单管理（关联自身表查询所有）.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/系统管理-后端API管理（关联自身表查询所有）.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/系统管理-角色-API分配" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/系统管理-角色-前端菜单分配" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/系统管理-角色-用户分配.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/1-登录成功-根据账号找API资源鉴权.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/2-根据用户查询角色.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/3-登录成功-根据账号查询前端菜单.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/4-系统管理-前端菜单管理（关联自身表查询所有）.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/5-系统管理-后端API管理（关联自身表查询所有）.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/6-系统管理-角色-用户分配.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/7-系统管理-角色-前端菜单分配.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/8-系统管理-角色-API分配.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/9-根据角色查找API资源鉴权.sql" dialect="GenericSQL" />
   </component>
 </project>
