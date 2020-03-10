@@ -16,7 +16,7 @@ public class BackendApiProvider {
     public String backendApiByusername(Map params){
         return new SQL(){
             {
-                SELECT_DISTINCT("a.backend_api_url");
+                SELECT_DISTINCT("a.backend_api_url","a.backend_api_method");
                 FROM("sys_backend_api_table a",
                         "sys_role_table b",
                         "sys_role_backend_api_table c",
@@ -42,7 +42,7 @@ public class BackendApiProvider {
         String[] roles = (String[])params.get("roles");
 
         StringBuilder sql = new StringBuilder ();
-        sql.append ("select DISTINCT a.backend_api_url ");
+        sql.append ("select DISTINCT a.backend_api_url ,a.backend_api_method ");
         sql.append ("from sys_backend_api_table a, sys_role_table b, sys_role_backend_api_table c ");
         sql.append ("where a.backend_api_id = c.backend_api_id ");
         sql.append ("  and a.backend_api_url <> 'none' ");

@@ -1,4 +1,6 @@
-select DISTINCT a.backend_api_url
+select DISTINCT
+    a.backend_api_url,
+    a.backend_api_method
 from sys_backend_api_table a,
      sys_role_table b,
      sys_role_backend_api_table c,

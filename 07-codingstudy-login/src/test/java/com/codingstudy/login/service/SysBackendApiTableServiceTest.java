@@ -27,7 +27,7 @@ class SysBackendApiTableServiceTest {
         //list.add(new SysBackendApiTable(null,"用户查询","/user/search","",1,"get"));
         //list.add(new SysBackendApiTable(null,"用户注册","/user/register","",2,"post"));
         //list.add(new SysBackendApiTable(null,"用户编辑","/user/edit","",3,"put"));
-        list.add(new SysBackendApiTable(null,"所有","/**","",0,"admin特有"));
+        list.add(new SysBackendApiTable(null,"所有","","/**","GET",0,"admin特有"));
         service.saveBatch(list);
     }
 
@@ -36,7 +36,7 @@ class SysBackendApiTableServiceTest {
      */
     @Test
     void selectAPIbByRoles(){
-      List<String> list =  service.getApiUrlByRoles("ROLE_ADMIN");
+      List<SysBackendApiTable> list =  service.getApiUrlByRoles("ROLE_ADMIN");
       list.forEach(System.out::println);
     }
 
@@ -45,7 +45,7 @@ class SysBackendApiTableServiceTest {
      */
     @Test
     void selectAPIByUserName() {
-        List<String> list =  service.getApiUrlByUserName("张三");
+        List<SysBackendApiTable> list =  service.getApiUrlByUserName("张三");
         list.forEach(System.out::println);
     }
 }

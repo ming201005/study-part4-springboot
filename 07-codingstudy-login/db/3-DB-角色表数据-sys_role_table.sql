@@ -1,3 +1,0 @@
-INSERT INTO `07-codingstudy_login`.sys_role_table (role_id, role_name, description) VALUES ('1', 'ROLE_ADMIN', '超级管理员');
-INSERT INTO `07-codingstudy_login`.sys_role_table (role_id, role_name, description) VALUES ('2f412c59e5077e0cd53d21fac3eee402', 'ROLE_收银员', '收银员');
-INSERT INTO `07-codingstudy_login`.sys_role_table (role_id, role_name, description) VALUES ('d04c2ebb1e32995f384ad49f6d4b421d', 'ROLE_店长', '店长');

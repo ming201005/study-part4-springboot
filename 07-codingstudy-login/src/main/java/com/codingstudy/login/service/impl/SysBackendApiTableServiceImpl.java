@@ -27,7 +27,7 @@ public class SysBackendApiTableServiceImpl extends ServiceImpl<SysBackendApiTabl
      * @return
      */
     @Override
-    public List<String> getApiUrlByRoles(String... roles) {
+    public List<SysBackendApiTable> getApiUrlByRoles(String... roles) {
         return this.baseMapper.getApiUrlByRoles(roles);
     }
 
@@ -38,7 +38,7 @@ public class SysBackendApiTableServiceImpl extends ServiceImpl<SysBackendApiTabl
      * @return
      */
     @Override
-    public List<String> getApiUrlByUserName(String username) {
+    public List<SysBackendApiTable> getApiUrlByUserName(String username) {
         System.out.println("getApiUrlByUserName.................");
         return this.baseMapper.getApiUrlByUserName(username);
     }

@@ -24,6 +24,7 @@ public class SysBackendApiTable extends Model<SysBackendApiTable> {
 
     private String backendApiUrl;
 
+    private String backendApiMethod;
     
     private Integer backendApiSort;
     
@@ -32,11 +33,12 @@ public class SysBackendApiTable extends Model<SysBackendApiTable> {
     public SysBackendApiTable() {
     }
 
-    public SysBackendApiTable(String backendApiId, String backendApiName, String backendApiUrl, String pid, Integer backendApiSort, String description) {
+    public SysBackendApiTable(String backendApiId, String backendApiName, String pid, String backendApiUrl, String backendApiMethod, Integer backendApiSort, String description) {
         this.backendApiId = backendApiId;
         this.backendApiName = backendApiName;
-        this.backendApiUrl = backendApiUrl;
         this.pid = pid;
+        this.backendApiUrl = backendApiUrl;
+        this.backendApiMethod = backendApiMethod;
         this.backendApiSort = backendApiSort;
         this.description = description;
     }
@@ -73,7 +75,14 @@ public class SysBackendApiTable extends Model<SysBackendApiTable> {
         this.backendApiUrl = backendApiUrl;
     }
 
+    public String getBackendApiMethod() {
+        return backendApiMethod;
+    }
 
+
+    public void setBackendApiMethod(String backendApiMethod) {
+        this.backendApiMethod = backendApiMethod;
+    }
 
     public Integer getBackendApiSort() {
         return backendApiSort;

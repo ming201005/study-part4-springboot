@@ -81,7 +81,7 @@ public interface SysRoleTableDao extends BaseMapper<SysRoleTable> {
             "  t1.backend_api_id as id,\n" +
             "  CASE t1.backend_api_url \n" +
             "  WHEN 'none' THEN t1.backend_api_name\n" +
-            "  ELSE  CONCAT(t1.backend_api_name,' (',t1.backend_api_url,')')\n" +
+            "  ELSE  CONCAT(t1.backend_api_name,' (',t1.backend_api_url,' ,提交类型:',t1.backend_api_method,')')\n" +
             "  END as name ,\n" +
             "  t1.pid as pid,\n" +
             "  t2.role_id as role_id \n" +

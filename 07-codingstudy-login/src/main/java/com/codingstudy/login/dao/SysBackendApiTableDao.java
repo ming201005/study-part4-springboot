@@ -20,13 +20,15 @@ import java.util.List;
 public interface SysBackendApiTableDao extends BaseMapper<SysBackendApiTable> {
 
     /**
+     * 注意：该方法前端暂时没用到！
+     *
      * 通过角色获得后台AIP访问地址
      * 一个账号有多个角色。
      * @param roles
      * @return
      */
     @SelectProvider(type = BackendApiProvider.class, method ="backendApiSelectSQL")
-    List<String> getApiUrlByRoles(@Param("roles") String ...roles);
+    List<SysBackendApiTable> getApiUrlByRoles(@Param("roles") String ...roles);
 
 
     /**
@@ -35,7 +37,7 @@ public interface SysBackendApiTableDao extends BaseMapper<SysBackendApiTable> {
      * @return
      */
     @SelectProvider(type = BackendApiProvider.class, method ="backendApiByusername")
-    List<String> getApiUrlByUserName(@Param("username") String username);
+    List<SysBackendApiTable> getApiUrlByUserName(@Param("username") String username);
 
     /**
      * 管理员对API进行管理
@@ -47,6 +49,7 @@ public interface SysBackendApiTableDao extends BaseMapper<SysBackendApiTable> {
             "    b.backend_api_name,\n" +
             "    b.backend_api_sort,\n" +
             "    b.backend_api_url,\n" +
+            "    b.backend_api_method,\n" +
             "    b.description\n" +
             "FROM\n" +
             "    sys_backend_api_table a\n" +

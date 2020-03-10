@@ -20,14 +20,14 @@ public interface SysBackendApiTableService extends IService<SysBackendApiTable> 
      * @param roles
      * @return
      */
-    List<String> getApiUrlByRoles(String ...roles);
+    List<SysBackendApiTable> getApiUrlByRoles(String ...roles);
 
     /**
      * 根据用户名称查询API接口URL
      * @param username
      * @return
      */
-    List<String> getApiUrlByUserName(String username);
+    List<SysBackendApiTable> getApiUrlByUserName(String username);
 
     /**
      * 查所有（编辑使用）
