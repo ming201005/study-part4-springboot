@@ -2,9 +2,52 @@
  * 小明哥
  * @type {{setAuth(*=): void, _getVal(*): (*|null), getAuth(): *, _getAuth(): void, getToken(): *, authObj: null, getUserName(): *, delAuth(): void, gotoLogin(*=): void, USER_AUTH_KEY: string, managerCenter(*=): void}}
  */
+
+//api访问地址，可修改
+let global_api_url = "http://localhost:8083/";
+
 let Auth = {
     USER_AUTH_KEY: "Authorization",
     authObj:null,
+
+    /**
+     * 登录
+     */
+    login(user) {
+        if(this._verify(user)) {
+            axios.post(global_api_url+"login", user).then(rs => {
+                if (rs.data.code == 0) {
+                    //登录成功
+                    let userAuth = rs.data.data;
+                    //存用户权限信息
+                    this.setAuth(userAuth);
+                    //决定是否跳转
+                    this.gotoManagerCenter(userAuth.token);
+                } else {
+                    alert(rs.data.msg);
+                }
+            }).catch(err => {
+                alert(err);
+            });
+        }
+    },
+
+    /**
+     * 退出
+     */
+    logout() {
+        axios.get(global_api_url+"logout").then(rs=>{
+            if(rs.data.code ==0 ) {
+                this.deleteAuth();
+                document.location.reload();
+            }else{
+                alert(rs.data.msg);
+            }
+        }).catch(err=>{
+            alert(err)
+        });
+    },
+
     /**
      * 保存用户基本权限信息
      * @param auth
@@ -90,5 +133,25 @@ let Auth = {
             this._getAuth();
         }
         return  this.authObj? this.authObj[val] : null;
+    },
+
+    //登录验证
+    _verify(user) {
+        let errArr = [];
+        //做一个简单的验证
+        if (user.username == null || user.username =="") {
+            errArr.push("请输入账号！");
+        }else if(user.password == null || user.password ==""){
+            errArr.push("请输入密码！");
+        }else if(user.password.length<6 || user.password.length>12){
+            errArr.push("密码范围是6~12位数！");
+        }
+        if(errArr.length>0){
+            alert(errArr);
+        }else {
+            return true;
+        }
+        return false;
     }
+
 }

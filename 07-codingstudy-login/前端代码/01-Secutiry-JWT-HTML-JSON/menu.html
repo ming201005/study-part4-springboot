@@ -81,7 +81,7 @@
     let vue = new Vue({
         el: "#app",
         data: {
-            url : "http://localhost:8083/sysFrontendMenuTable",
+            url : global_api_url+"sysFrontendMenuTable",
             //对象
             model:{
                 frontendMenuId:null,
@@ -160,6 +160,8 @@
                     if(rs.data.code == 0) {
                         //this.model = rs.data.data;
                         this.getModelList();
+                    }else{
+                        alert(rs.data.msg);
                     }
                 }).catch(err => {
                     console.log(err);
@@ -176,6 +178,8 @@
                     if(rs.data.code == 0) {
                         //this.model = rs.data.data;
                         this.getModelList();
+                    }else{
+                        alert(rs.data.msg);
                     }
                 }).catch(err => {
                     console.log(err);
@@ -193,6 +197,8 @@
                     axios.delete(url).then( rs => {
                         if(rs.data.code == 0) {
                             this.getModelList();
+                        }else{
+                            alert(rs.data.msg);
                         }
                     }).catch(err => {
                         console.log(err);

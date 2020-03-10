@@ -31,6 +31,15 @@
         </div>
 
         <div class="item">
+            <label>请求方式：</label>
+            <input type="checkbox"  v-model="backendApiMethods" value="GET">GET
+            <input type="checkbox"  v-model="backendApiMethods" value="POST">POST
+            <input type="checkbox"  v-model="backendApiMethods" value="PUT">PUT
+            <input type="checkbox"  v-model="backendApiMethods" value="DELETE">DELETE
+            <input type="checkbox"  v-model="backendApiMethods" value="OPTIONS">OPTIONS
+        </div>
+
+        <div class="item">
             <label for="backendApiSort">排序：</label>
             <input type="number" id="backendApiSort" v-model="model.backendApiSort">
             <span>务必填写，建议：分类一：100、101、102；分类二：200、201；以此类推</span>
@@ -56,6 +65,7 @@
                 <td>父级</td>
                 <td>API名称</td>
                 <td>请求地址</td>
+                <td>请求方式</td>
                 <td>排序</td>
                 <td>说明</td>
                 <td>操作</td>
@@ -65,6 +75,7 @@
                 <td>{{item.parentName}}</td>
                 <td>{{item.pid==null? "+"+item.backendApiName:"—"+item.backendApiName}}</td>
                 <td>{{item.backendApiUrl}}</td>
+                <td>{{item.backendApiMethod}}</td>
                 <td>{{item.backendApiSort}}</td>
                 <td>{{item.description}}</td>
                 <td>
@@ -82,17 +93,19 @@
     let vue = new Vue({
         el: "#app",
         data: {
-            url : "http://localhost:8083/sysBackendApiTable",
+            url : global_api_url+"sysBackendApiTable",
             //对象
             model:{
                 backendApiId:null,
                 backendApiName:null,
                 backendApiUrl:null,
+                backendApiMethod:null,
                 parentName:null,
                 pid:null,
                 backendApiSort:null,
                 description:null
             },
+           // backendApiMethods:[],
             //列表
             modelList:[]
         },
@@ -126,7 +139,7 @@
              */
             editModel(item){
                 this.model = item;
-                console.log(this.model);
+                console.log("编辑editModel---->",this.model);
             },
 
             /**
@@ -161,6 +174,8 @@
                     if(rs.data.code == 0) {
                         //this.model = rs.data.data;
                         this.getModelList();
+                    }else{
+                        alert(rs.data.msg);
                     }
                 }).catch(err => {
                     console.log(err);
@@ -177,6 +192,8 @@
                     if(rs.data.code == 0) {
                         //this.model = rs.data.data;
                         this.getModelList();
+                    }else{
+                        alert(rs.data.msg);
                     }
                 }).catch(err => {
                     console.log(err);
@@ -194,10 +211,32 @@
                     axios.delete(url).then( rs => {
                         if(rs.data.code == 0) {
                             this.getModelList();
+                        }else{
+                            alert(rs.data.msg);
                         }
                     }).catch(err => {
                         console.log(err);
                     });
+                }
+            }
+        },
+        //计算属性
+        computed:{
+            backendApiMethods:{
+                get() {
+                    //把model.backendApiMethod转化成数组
+                    //model.backendApiMethod存储的是“,”分开的数据
+                    let arr = [];
+                    let methodStr = this.model.backendApiMethod;
+                    if (methodStr != null && methodStr !="") {
+                        arr = methodStr.split(",");
+                    }
+                    return arr;
+                },
+                set(val) {
+                    //有变化后，把值赋给model.backendApiMethod
+                    this.model.backendApiMethod = val.toString();
+                    console.log("计算属性computed -->this.model===>",this.model);
                 }
             }
         }

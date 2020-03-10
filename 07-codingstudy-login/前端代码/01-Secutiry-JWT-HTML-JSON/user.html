@@ -67,7 +67,7 @@
     let vue = new Vue({
         el: "#app",
         data: {
-            url : "http://localhost:8083/user",
+            url : global_api_url+"user",
             //对象
             model:{
                 id:null,
@@ -132,6 +132,8 @@
                 axios.post(this.url+"/register", this.model).then( rs => {
                     if(rs.data.code == 0) {
                         this.getModelList();
+                    }else{
+                        alert(rs.data.msg);
                     }
                 }).catch(err => {
                     console.log(err);
@@ -146,8 +148,9 @@
                 console.log("here  edit...............")
                 axios.put(this.url, this.model).then( rs => {
                     if(rs.data.code == 0) {
-
                         this.getModelList();
+                    }else{
+                        alert(rs.data.msg);
                     }
                 }).catch(err => {
                     console.log(err);
@@ -165,6 +168,8 @@
                     axios.delete(url).then( rs => {
                         if(rs.data.code == 0) {
                             this.getModelList();
+                        }else{
+                            alert(rs.data.msg);
                         }
                     }).catch(err => {
                         console.log(err);

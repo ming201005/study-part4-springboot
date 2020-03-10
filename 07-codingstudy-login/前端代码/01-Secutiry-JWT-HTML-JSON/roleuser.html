@@ -84,6 +84,7 @@
         el: "#app",
         data: {
             actionId:null,
+            url : global_api_url+"sysRoleTable",
             //对象
             model: {
                 roleId: null,
@@ -102,7 +103,7 @@
         methods: {
             //查询列表
             getModelList() {
-                let url = "http://localhost:8083/sysRoleTable";
+                let url = this.url;
                 axios.get(url + "?size=100").then(rs => {
                     if (rs.data.code == 0) {
                         console.log(rs.data.data);
@@ -119,7 +120,7 @@
             //查询列表
             getPermissionListList(roleId) {
                 this.userList = [];
-                let url = "http://localhost:8083/sysRoleTable/roleUser/"+roleId;
+                let url = this.url+"/roleUser/"+roleId;
                 axios.get(url).then(rs => {
                     if (rs.data.code == 0) {
                         this.permissionList = rs.data.data;
@@ -157,7 +158,7 @@
                 });
                 console.log(roleAndPermissionList);
                 //批量提交
-                let url = "http://localhost:8083/sysRoleTable/roleUser/set?roleId="+this.actionId;
+                let url = this.url+"/roleUser/set?roleId="+this.actionId;
                 axios.post(url, roleAndPermissionList).then(rs => {
                     if (rs.data.code == 0) {
                         //this.model = rs.data.data;

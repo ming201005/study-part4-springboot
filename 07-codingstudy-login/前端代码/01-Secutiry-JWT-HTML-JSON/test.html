@@ -9,7 +9,7 @@
     //第一步：创建XMLHttpRequest对象
     let xmlhttp = new XMLHttpRequest();
     //第二步：调用open方法 请求
-    xmlhttp.open("get","http://localhost:8083/product");
+    xmlhttp.open("get",global_api_url+"product");
     //第三步：响应处理
     xmlhttp.onreadystatechange = function () {
 

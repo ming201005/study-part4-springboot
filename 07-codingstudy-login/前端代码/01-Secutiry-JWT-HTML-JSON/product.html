@@ -15,10 +15,6 @@
 
     <div class="model_box">
 
-        <div class="item" v-if="model.productId != null">
-            <label for="productId">商品编号：</label>
-            <input id="productId" v-model="model.productId" disabled>
-        </div>
 
         <div class="item">
             <label for="productName">商品名称：</label>
@@ -35,7 +31,7 @@
             <input id="price" v-model="model.price">
         </div>
         <div class="button_group">
-            <button @click="add" >保存</button>
+            <button @click="save" >保存</button>
             <button >取消</button>
         </div>
     </div>
@@ -48,7 +44,7 @@
         </div>
         <table width="100%" border="0" cellspacing="1" cellpadding="0">
             <tr class="h">
-                <td>商品编号</td>
+                <td width="25%">商品编号</td>
                 <td>商品名称</td>
                 <td>库存量</td>
                 <td>市场价</td>
@@ -60,7 +56,10 @@
                 <td>{{item.productName}}</td>
                 <td>{{item.num}}</td>
                 <td>{{item.price}}</td>
-                <td></td>
+                <td>
+                    <button @click="editModel(item)" >编辑</button>
+                    <button @click="del(item.productId)" >删除</button>
+                </td>
             </tr>
         </table>
     </div>
@@ -71,15 +70,15 @@
     let vue = new Vue({
         el: "#app",
         data: {
-            url : "http://localhost:8083/product",
-            //商品对象
+            url : global_api_url+"productTable",
+            //对象
             model:{
                 productId:null,
                 productName:null,
                 num:0,
                 price:0.00
             },
-            //商品列表
+            //列表
             modelList:[]
         },
         created() {
@@ -90,31 +89,97 @@
             getModelList() {
                 axios.get(this.url).then(rs => {
                     if(rs.data.code == 0) {
-                        this.modelList = rs.data.data;
-                        console.log(this.modelList);
+                        console.log(rs.data.data);
+                        //注意后台调用的是分页的API
+                        this.modelList = rs.data.data.records;
                     }else{
-                        console.log(rs.data.msg);
+                        alert(rs.data.msg);
                     }
                 }).catch(err => {
                     console.log("错误信息==》",err);
                 });
             },
 
+            /**
+             * 准备新增
+             */
             addNew(){
                 this.model = {};
             },
 
-            //新增数据
-            add() {
+            /**
+             * 准备编辑的数据
+             */
+            editModel(item){
+                this.model = item;
+            },
+
+
+            /**
+             * 保存数据，包括新增、和编辑
+             */
+            save(){
+                if(this.model.productId ==null){
+                    this._add();
+                }else{
+                    this._edit();
+                }
+            },
+
+            /**
+             * 新增
+             */
+            _add() {
                 console.log("here  add...............")
+
                 axios.post(this.url, this.model).then( rs => {
                     if(rs.data.code == 0) {
                         this.model = rs.data.data;
-                        this.modelList.unshift(this.model);
+                        this.getModelList();
+                    }else{
+                        alert(rs.data.msg);
                     }
                 }).catch(err => {
                     console.log(err);
                 });
+            },
+
+            /**
+             * 编辑
+             * @param item
+             */
+            _edit() {
+                console.log("here  edit...............")
+                axios.put(this.url, this.model).then( rs => {
+                    if(rs.data.code == 0) {
+
+                        this.getModelList();
+                    }else{
+                        alert(rs.data.msg);
+                    }
+                }).catch(err => {
+                    console.log(err);
+                });
+            },
+
+            /**
+             * 删除,如果要做批量删除。请传多个frontendMenuId，或者
+             * 传“,”分开的id，例如：id=1,2,3,5,6。后端接收参数idList
+             * @param roleId
+             */
+            del(roleId) {
+                if(confirm('一旦删除，不可恢复，请确认。')){
+                    let url = this.url + "?idList="+roleId;
+                    axios.delete(url).then( rs => {
+                        if(rs.data.code == 0) {
+                            this.getModelList();
+                        }else{
+                            alert(rs.data.msg);
+                        }
+                    }).catch(err => {
+                        console.log(err);
+                    });
+                }
             }
 
         }

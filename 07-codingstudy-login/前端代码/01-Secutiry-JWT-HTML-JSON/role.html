@@ -17,7 +17,8 @@
         <div class="item">
             <label for="roleName">角色名称：</label>
             <input id="roleName" v-model="model.roleName">
-            <span>新建时，自动加前缀“ROLE_”</span>
+            <span>新建时，自动加前缀“ROLE_” 。 </span>
+            <span>不能删除ROLE_ADMIN，角色，如果删除，请到数据库手动添加。</span>
         </div>
 
         <div class="item">
@@ -62,7 +63,7 @@
     let vue = new Vue({
         el: "#app",
         data: {
-            url : "http://localhost:8083/sysRoleTable",
+            url : global_api_url+"sysRoleTable",
             //对象
             model:{
                 roleId:null,
@@ -127,6 +128,8 @@
                     if(rs.data.code == 0) {
                         this.model = rs.data.data;
                         this.getModelList();
+                    }else{
+                        alert(rs.data.msg);
                     }
                 }).catch(err => {
                     console.log(err);
@@ -143,6 +146,8 @@
                     if(rs.data.code == 0) {
 
                         this.getModelList();
+                    }else{
+                        alert(rs.data.msg);
                     }
                 }).catch(err => {
                     console.log(err);
@@ -160,6 +165,8 @@
                     axios.delete(url).then( rs => {
                         if(rs.data.code == 0) {
                             this.getModelList();
+                        }else{
+                            alert(rs.data.msg);
                         }
                     }).catch(err => {
                         console.log(err);

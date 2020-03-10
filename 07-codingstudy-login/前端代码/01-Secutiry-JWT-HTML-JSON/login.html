@@ -27,8 +27,7 @@
             <label for="password" class="sr-only">密码：</label>
             <input type="password" id="password"  v-model="user.password"  class="form-control">
         </p>
-        <button class="btn btn-lg btn-primary btn-block" @click="loginAxios">登录</button>
-
+        <button class="btn btn-lg btn-primary btn-block" onclick="Auth.login(vue.$data.user)">登录</button>
     </div>
 
 </div>
@@ -37,56 +36,13 @@
         el:"#app",
         data:{
             user:{
-                username:"",
-                password:""
+                username:null,
+                password:null
             }
         },
         created(){
             //检测如果登录了，直接进入管理中心
             Auth.gotoManagerCenter(Auth.getToken());
-        },
-        methods:{
-
-            /**
-             * 登录
-             */
-            loginAxios() {
-                if(this.verify()) {
-                    let url = `http://localhost:8083/login`;
-                    axios.post(url, this.user).then(rs => {
-                        if (rs.data.code == 0) {
-                            //登录成功
-                            let userAuth = rs.data.data;
-                            //存用户权限信息
-                            Auth.setAuth(userAuth);
-                            //决定是否跳转
-                            Auth.gotoManagerCenter(userAuth.token);
-                        } else {
-                            alert(rs.data.msg);
-                        }
-                    }).catch(err => {
-                        alert(err);
-                    });
-                }
-            },
-            //登录验证
-            verify() {
-                let errArr = [];
-                //做一个简单的验证
-                if (this.user.username == null || this.user.username =="") {
-                    errArr.push("请输入账号！");
-                }else if(this.user.password == null || this.user.password ==""){
-                    errArr.push("请输入密码！");
-                }else if(this.user.password.length<6 || this.user.password.length>12){
-                    errArr.push("密码范围是6~12位数！");
-                }
-                if(errArr.length>0){
-                    alert(errArr);
-                }else {
-                    return true;
-                }
-                return false;
-            }
         }
     });
 
