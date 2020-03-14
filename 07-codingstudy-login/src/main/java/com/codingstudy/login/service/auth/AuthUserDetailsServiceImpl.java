@@ -16,8 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author K. L. Mao
- * @create 2019/1/11
+ * 要实现UserDetailsService接口，这个接口是security提供的
  */
 @Service
 public class AuthUserDetailsServiceImpl implements UserDetailsService {

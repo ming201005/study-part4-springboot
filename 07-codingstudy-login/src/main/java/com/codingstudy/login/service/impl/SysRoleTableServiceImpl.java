@@ -8,6 +8,7 @@ import com.codingstudy.login.vo.SysRoleAndPermissionVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 /**
@@ -43,8 +44,9 @@ public class SysRoleTableServiceImpl extends ServiceImpl<SysRoleTableDao, SysRol
      * 根据roleId找菜单
      */
     @Override
-    public List<SysRoleAndPermissionVo> getRoleAndMenuList(String roleId){
-        return this.baseMapper.getRoleAndMenuList(roleId);
+    public List<SysRoleAndPermissionVo> getRoleAndMenuList(String roleId)
+            throws SQLIntegrityConstraintViolationException {
+            return this.baseMapper.getRoleAndMenuList(roleId);
     }
 
     /**

@@ -5,6 +5,7 @@ import com.codingstudy.login.entity.SysRoleTable;
 import com.codingstudy.login.vo.SysRoleAndPermissionVo;
 import org.apache.ibatis.annotations.Param;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public interface SysRoleTableService extends IService<SysRoleTable> {
     /**
      * 根据roleId找菜单
      */
-    List<SysRoleAndPermissionVo> getRoleAndMenuList(String roleId);
+    List<SysRoleAndPermissionVo> getRoleAndMenuList(String roleId) throws SQLIntegrityConstraintViolationException, Exception;
 
     /**
      * 根据roleId找API

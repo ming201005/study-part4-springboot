@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
+/**
+ * 要实现UserDetails接口，这个接口是security提供的
+ */
 @Component
 public class AuthUser implements UserDetails {
 
