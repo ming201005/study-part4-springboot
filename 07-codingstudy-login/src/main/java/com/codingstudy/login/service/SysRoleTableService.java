@@ -33,7 +33,7 @@ public interface SysRoleTableService extends IService<SysRoleTable> {
     /**
      * 根据roleId找菜单
      */
-    List<SysRoleAndPermissionVo> getRoleAndMenuList(String roleId) throws SQLIntegrityConstraintViolationException, Exception;
+    List<SysRoleAndPermissionVo> getRoleAndMenuList(String roleId) ;
 
     /**
      * 根据roleId找API

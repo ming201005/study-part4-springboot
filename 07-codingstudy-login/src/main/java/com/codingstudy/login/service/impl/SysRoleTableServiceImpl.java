@@ -45,7 +45,7 @@ public class SysRoleTableServiceImpl extends ServiceImpl<SysRoleTableDao, SysRol
      */
     @Override
     public List<SysRoleAndPermissionVo> getRoleAndMenuList(String roleId)
-            throws SQLIntegrityConstraintViolationException {
+             {
             return this.baseMapper.getRoleAndMenuList(roleId);
     }
 
