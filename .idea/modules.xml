@@ -12,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/07-codingstudy-login/07-codingstudy-login.iml" filepath="$PROJECT_DIR$/07-codingstudy-login/07-codingstudy-login.iml" />
       <module fileurl="file://$PROJECT_DIR$/06-codingstudy-Aop/Aop.iml" filepath="$PROJECT_DIR$/06-codingstudy-Aop/Aop.iml" />
       <module fileurl="file://$PROJECT_DIR$/05-jpa-test/jpatest.iml" filepath="$PROJECT_DIR$/05-jpa-test/jpatest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/08-codingstudy-login/login-element-ui.iml" filepath="$PROJECT_DIR$/08-codingstudy-login/login-element-ui.iml" />
       <module fileurl="file://$PROJECT_DIR$/03-mybatis-@/mybatis03.iml" filepath="$PROJECT_DIR$/03-mybatis-@/mybatis03.iml" />
       <module fileurl="file://$PROJECT_DIR$/04-mybatis-plus/mybatisplus.iml" filepath="$PROJECT_DIR$/04-mybatis-plus/mybatisplus.iml" />
       <module fileurl="file://$PROJECT_DIR$/02-mybatisxml/mybatisxml.iml" filepath="$PROJECT_DIR$/02-mybatisxml/mybatisxml.iml" />

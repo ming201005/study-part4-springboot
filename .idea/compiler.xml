@@ -19,6 +19,7 @@
         <module name="mybatis03" />
         <module name="04-mybatis-plus" />
         <module name="00-01-codingstudy-aop" />
+        <module name="login-element-ui" />
         <module name="03-mybatis-@" />
       </profile>
     </annotationProcessing>
@@ -37,6 +38,7 @@
       <module name="07-codingstudy-login" target="1.8" />
       <module name="Aop" target="13" />
       <module name="jpatest" target="1.8" />
+      <module name="login-element-ui" target="1.8" />
       <module name="mybatis03" target="1.8" />
       <module name="mybatisplus" target="1.8" />
       <module name="mybatisxml" target="1.8" />
@@ -59,6 +61,7 @@
       <module name="07-codingstudy-login" options="-parameters" />
       <module name="Aop" options="-parameters" />
       <module name="jpatest" options="-parameters" />
+      <module name="login-element-ui" options="-parameters" />
       <module name="mybatis03" options="-parameters" />
       <module name="mybatisplus" options="-parameters" />
       <module name="mybatisxml" options="-parameters" />

@@ -69,5 +69,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/07-codingstudy_login?serverTimezone=UTC</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="08-codingstudy-login@localhost" uuid="2daa9ec1-7414-4551-8f17-acc599e47aad">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/08-codingstudy-login?serverTimezone=UTC&amp;allowMultiQueries=true</jdbc-url>
+    </data-source>
   </component>
 </project>

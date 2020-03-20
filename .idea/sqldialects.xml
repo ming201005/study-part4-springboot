@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/1-登录成功-根据账号找API资源鉴权.sql" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/2-根据用户查询角色.sql" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/3-登录成功-根据账号查询前端菜单.sql" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/07-codingstudy-login/db/4-系统管理-前端菜单管理（关联自身表查询所有）.sql" dialect="GenericSQL" />
